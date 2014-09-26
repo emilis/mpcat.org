@@ -1,0 +1,54 @@
+### Variables ------------------------------------------------------------------
+
+SRC =			lib
+MAIN =			index.mpc
+SRC_FILES =		$(shell find $(SRC) -type f)
+ALL_FILES =		Makefile $(MAIN) $(SRC_FILES)
+LRSYNC =		rsync -ghlport --del
+RRSYNC =		rsync -hlprt --del
+
+### Tasks ----------------------------------------------------------------------
+
+.PHONY = default
+default:\
+	build/index.html\
+	build/style.css\
+	build/script.js\
+
+
+.PHONY += clean
+clean:\
+
+	rm -rf build/*
+
+
+.PHONY += backup
+backup:\
+
+	git push pi master
+
+
+.PHONY += deploy
+deploy:\
+
+	$(RRSYNC) build/ mpcat@mpcat.org:mpcat.org/
+
+### Targets --------------------------------------------------------------------
+
+build/index.html:\
+	$(ALL_FILES)\
+
+	stark
+
+
+build/style.css:\
+	$(ALL_FILES)\
+
+	stark
+
+
+build/script.js:\
+	$(ALL_FILES)\
+
+	stark
+
