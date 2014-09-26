@@ -16,6 +16,12 @@ default:\
 	build/script.js\
 
 
+.PHONY += sync-static
+sync-static:\
+
+	$(LRSYNC) static/ build/static/
+
+
 .PHONY += clean
 clean:\
 
