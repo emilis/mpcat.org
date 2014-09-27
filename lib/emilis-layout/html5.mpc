@@ -11,8 +11,8 @@ var timestamp = ( new Date() ).getTime();
 <head>
     <meta charset="utf8">
     <title><%- title %></title>
-    <link rel="stylesheet" href="style.css?<%- timestamp %>">
-    <script async="async" defer="defer" src="script.js?<%- timestamp %>"></script>
+    <link rel="stylesheet" href="/style.css?<%- timestamp %>">
+    <script async="async" defer="defer" src="/script.js?<%- timestamp %>"></script>
 </head>
 <body>
     <%= content %>
