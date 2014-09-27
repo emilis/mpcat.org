@@ -14,6 +14,7 @@ default:\
 	build/index.html\
 	build/style.css\
 	build/script.js\
+	build/pages\
 
 
 .PHONY += sync-static
@@ -58,3 +59,8 @@ build/script.js:\
 
 	stark
 
+
+build/pages:\
+	pages\
+
+	stark
