@@ -1,0 +1,71 @@
+--- requirements ---------------------------------------------------------------
+
+    dom:    ../emilis/dom
+
+--- exports --------------------------------------------------------------------
+
+    onClickRun
+
+--- jst ------------------------------------------------------------------------
+
+<header id="header">
+    <img class="logo" src="/static/mpcat.org-white.png" title="MPCat.org" alt="MPCat.org">
+    <menu class="main">
+        <button class="run">Run</button>
+        <!--
+        <button class="save">Save</button>
+        <button class="new">New</button>
+        -->
+    </menu>
+    <menu class="settings">
+        <!--
+        <button class="settings">Settings</button>
+        -->
+    </menu>
+</header>
+
+--- js -------------------------------------------------------------------------
+
+var runFn =             [];
+var onClickRun =        runFn.push.bind( runFn );
+
+dom.eqs( "#header > .main > .run" ).onclick =    triggerRun;
+
+function triggerRun( evt ){
+
+    runFn.forEach( triggerEvent( this, evt ));
+}///
+
+function triggerEvent( el, evt ){
+    return function( fn ){
+        return fn.call( el, evt );
+    };//
+}///
+
+--- less -----------------------------------------------------------------------
+
+#header {
+
+    padding:            0.5em;
+
+    background:         #000;
+    color:              #fff;
+    font-weight:        bold;
+
+    > .logo {
+
+        height:             2em;
+        vertical-align:     middle;
+        align:              middle;
+    }
+
+    > menu {
+
+        display:            inline-block;
+        margin:             0;
+
+        &.settings {
+            float:          right;
+        }
+    }
+}

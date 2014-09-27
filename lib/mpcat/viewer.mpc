@@ -1,0 +1,98 @@
+--- requirements ---------------------------------------------------------------
+
+    dom:                ../emilis/dom
+
+--- exports --------------------------------------------------------------------
+
+    updateContent
+
+--- jst ------------------------------------------------------------------------
+
+<div class="mpc-viewer"><em>Click [Run] to update output...</em></div>
+
+--- js -------------------------------------------------------------------------
+
+function updateContent( content ){
+
+    var viewer =        dom.eqs( ".mpc-viewer" );
+
+    window.localStorage.setItem( "viewerContent", JSON.stringify( content ));
+    viewer.innerHTML =  "";
+    viewer.appendChild( dom.create( "iframe", { src: "/viewer/" }));
+}///
+
+--- less ------------------------------------------------------------------------
+
+.mpc-viewer {
+
+    display:            block;
+    position:           absolute;
+    width:              100%;
+    height:             100%;
+    background:         #fff;
+
+    > iframe {
+
+        display:        block;
+        width:          100%;
+        height:         100%;
+        border:         0 none transparent;
+    }
+}
+
+--- html -----------------------------------------------------------------------
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf8">
+    <title>MPCat viewer</title>
+    <style type="text/css">
+        body {
+            background:     #fff;
+            color:          #000;
+        }
+    </style>
+</head>
+<body>
+    <p><em>loading...</em></p>
+    <script>
+        var content =   JSON.parse( window.localStorage.getItem( "viewerContent" ));
+        var el;
+
+        content.css && document.head.appendChild( createEl(
+            "style",
+            { type: "text/css" },
+            content.css ));
+
+        if ( content.html ){
+            document.body.innerHTML =   content.html;
+        }
+
+        content.js && document.body.appendChild( createEl(
+            "script",
+            null,
+            content.js ));
+
+        /// Functions ----------------------------------------------------------
+
+        function createEl( name, attr, content ){
+
+            var el =    document.createElement( name );
+
+            if ( attr ){
+                for ( var k in attr ){
+                    el.setAttribute( k, attr[k] );
+                }
+            }
+
+            if ( content ){
+                el.innerHTML =  content;
+            }
+
+            return el;
+        }///
+
+    </script>
+</body>
+</html>

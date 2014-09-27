@@ -1,0 +1,46 @@
+--- exports --------------------------------------------------------------------
+
+    eqs
+    eqa
+    eappend
+    create
+
+--- js -------------------------------------------------------------------------
+
+function eqs( el, q ){
+
+    return ( q ? el : document ).querySelector( q ? q : el );
+}///
+
+function eqa( el, q ){
+
+    return Array.prototype.slice.call(( q ? el : document ).querySelectorAll( q ? q : el ));
+}///
+
+function eappend( el, content ){
+
+    if ( typeof( content ) !== "undefined" ){
+        if ( content instanceof Element ){
+            el.appendChild( content );
+        } else if ( content instanceof Array ){
+            content.forEach( eappend.bind( this, el ));
+        } else {
+            el.innerHTML += content;
+        }
+    }
+
+    return el;
+}///
+
+function create( name, attrs, content ){
+
+    var el =    document.createElement( name );
+
+    if ( attrs ){
+        for ( var k in attrs ){
+            el.setAttribute( k, attrs[k] );
+        }
+    }
+
+    return eappend( el, content );
+}///

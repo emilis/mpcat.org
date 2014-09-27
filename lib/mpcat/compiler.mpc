@@ -1,0 +1,31 @@
+--- requirements ---------------------------------------------------------------
+
+    parser
+
+--- exports --------------------------------------------------------------------
+
+    compileCode
+
+--- js -------------------------------------------------------------------------
+
+function compileCode( code ){
+    
+    return compileParts( parser.parseString( code ));
+}///
+
+function compileParts( parts ){
+
+    var partMap =       parts.reduce( addPart, {} );
+
+    return {
+        css:            partMap.css || "",
+        js:             partMap.js || "",
+        html:           partMap.html || ""
+    }
+
+    function addPart( r, part ){
+
+        r[part.partName] =  part.content;
+        return r;
+    }///
+}///

@@ -1,6 +1,7 @@
 --- requirements ---------------------------------------------------------------
 
-layout:                 ../lib/emilis/html5
+    layout:             ../lib/emilis/html5
+    editor:             ../lib/mpcat/editor
 
 --- yaml -----------------------------------------------------------------------
 
@@ -8,122 +9,9 @@ title:                  MPCat Editor
 
 --- jst ------------------------------------------------------------------------
 
-<header id="header">
-    <img class="logo" src="/static/mpcat.org-white.png" title="MPCat.org" alt="MPCat.org">
-    <menu class="main">
-        <button class="run">Run</button>
-        <button class="save">Save</button>
-        <button class="new">New</button>
-    </menu>
-    <menu class="settings">
-        <button class="settings">Settings</button>
-    </menu>
-</header>
-<div id="panes">
-    <div class="row">
-        <div class="cell">
-            <textarea class="editor"><%- mpcExample.replace( /,,,/g, "---" ) %></textarea>
-        </div>
-        <div class="cell viewer">&nbsp;</div>
-    </div>
-</div>
-
---- js -------------------------------------------------------------------------
-
-eqs( ".run" ).onclick =     onClickRun;
-eqs( ".editor" ).oninput =  onEditorInput;
-eqs( ".editor" ).focus();
-
-/// Functions ------------------------------------------------------------------
-
-function onClickRun( evt ){
-    var timestamp =         +new Date;
-    eqs( ".viewer" ).innerHTML =    '<p>Under construction (' + timestamp + ').</p>';
-}///
-
-function onEditorInput( evt ){
-    
-}///
-
-function eqs( el, q ){
-    return ( q ? el : document ).querySelector( q ? q : el );
-}///
-
---- css -----------------------------------------------------------------------
-
-body {
-    height:             100%;
-    padding:            0;
-    margin:             0;
-    background:         #222;
-}
-
-#header {
-    padding:            0.5em;
-
-    background:         #000;
-    color:              #fff;
-    font-weight:        bold;
-}
-
-#header > .logo {
-    height:             2em;
-    vertical-align:     middle;
-    align:              middle;
-}
-
-#header > menu {
-    display:            inline-block;
-    margin:             0;
-}
-
-menu.settings {
-    float:              right;
-}
-
-#panes {
-    clear:              both;
-    display:            table;
-    position:           absolute;
-    top:                3em;
-    bottom:             0;
-    left:               0;
-    width:              100%;
-}
-
-#panes > .row {
-    display:            table-row;
-    height:             100%;
-}
-
-#panes > .row > .cell {
-    display:            table-cell;
-    vertical-align:     top;
-    width:              50%;
-    padding:            1em;
-    margin:             0;
-    overflow-y:         auto;
-}
-    
-.editor {
-    width:              100%;
-    height:             500px;
-    border:             0 none transparent;
-    background-color:   #222;
-    color:              #eee;
-}
-
-.viewer {
-    background:         #fff;
-    color:              #000;
-}
-
+<%= editor({ mpcExample: mpcExample.replace( /,,,/g, "---" )}) %>
 
 --- mpcExample -----------------------------------------------------------------
-
-,,, requirements ---------
-
-/zepto/zepto
 
 ,,, html -----------------
 
@@ -142,5 +30,6 @@ function onClickHello(){
 .hello {
     font-size:      200%;
     font-weight:    bold;
+    color:          red;
 }
 

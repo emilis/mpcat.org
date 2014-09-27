@@ -6,11 +6,11 @@ var page =              page || {};
 var page_parts =        page.parts || {};
 var page_yaml =         page.yaml || {};
 var page_css =          page.parts.less || page.parts.css || "";
-var page_js =           page.parts.js || "";
+var page_js =           page.parts.js || false;
 
 var language =          page_yaml.language || "en";
 var title =             page_yaml.title || "Untitled document";
-var timestamp =         ( new Date() ).getTime();
+var timestamp =         ( new Date() ).getTime().toString( 36 );
 
 %><!DOCTYPE html>
 <html lang="<%- language %>">
@@ -19,7 +19,9 @@ var timestamp =         ( new Date() ).getTime();
     <title><%- title %></title>
     <link rel="stylesheet" href="/style.css?<%- timestamp %>">
     <script async="async" defer="defer" src="/script.js?<%- timestamp %>"></script>
-    <style type="text/css"><%= page_css %></style>
+    <style type="text/css">
+        <%= page_css %>
+    </style>
 </head>
 <body>
     <%= content %>
@@ -29,8 +31,10 @@ var timestamp =         ( new Date() ).getTime();
         event.initEvent( "html-done", true, true );
         document.dispatchEvent( event );
     </script>
-    <script> (function(){
-        <%= page_js %>
-    })(); </script>
+    <% if ( page_js ){ %>
+        <script> (function(){
+            <%= page_js %>
+        })(); </script>
+    <% } %>
 </body>
 </html>
