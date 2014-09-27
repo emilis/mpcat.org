@@ -1,0 +1,36 @@
+--- jst -----------------------------------------------------------------------
+
+<%
+
+var page =              page || {};
+var page_parts =        page.parts || {};
+var page_yaml =         page.yaml || {};
+var page_css =          page.parts.less || page.parts.css || "";
+var page_js =           page.parts.js || "";
+
+var language =          page_yaml.language || "en";
+var title =             page_yaml.title || "Untitled document";
+var timestamp =         ( new Date() ).getTime();
+
+%><!DOCTYPE html>
+<html lang="<%- language %>">
+<head>
+    <meta charset="utf8">
+    <title><%- title %></title>
+    <link rel="stylesheet" href="/style.css?<%- timestamp %>">
+    <script async="async" defer="defer" src="/script.js?<%- timestamp %>"></script>
+    <style type="text/css"><%= page_css %></style>
+</head>
+<body>
+    <%= content %>
+    <script>
+        document.body.htmlDone =    true;
+        var event = document.createEvent('Event');
+        event.initEvent( "html-done", true, true );
+        document.dispatchEvent( event );
+    </script>
+    <script> (function(){
+        <%= page_js %>
+    })(); </script>
+</body>
+</html>

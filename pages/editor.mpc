@@ -1,6 +1,6 @@
 --- requirements ---------------------------------------------------------------
 
-layout:                 ../lib/emilis-layout/html5
+layout:                 ../lib/emilis/html5
 
 --- yaml -----------------------------------------------------------------------
 
@@ -8,9 +8,6 @@ title:                  MPCat Editor
 
 --- jst ------------------------------------------------------------------------
 
-<style type="text/css">
-    <%= css %>
-</style>
 <header id="header">
     <img class="logo" src="/static/mpcat.org-white.png" title="MPCat.org" alt="MPCat.org">
     <menu class="main">
@@ -30,11 +27,6 @@ title:                  MPCat Editor
         <div class="cell viewer">&nbsp;</div>
     </div>
 </div>
-<script>
-    (function(){
-        <%= js %>
-    })();
-</script>
 
 --- js -------------------------------------------------------------------------
 
