@@ -1,7 +1,7 @@
 --- requirements ---------------------------------------------------------------
 
     layout:             ../lib/emilis/html5
-    editor:             ../lib/mpcat/editor
+    ide:                ../lib/mpcat/ide
 
 --- yaml -----------------------------------------------------------------------
 
@@ -9,7 +9,7 @@ title:                  MPCat Editor
 
 --- jst ------------------------------------------------------------------------
 
-<%= editor({ mpcExample: mpcExample.replace( /,,,/g, "---" )}) %>
+<%= ide({ mpcExample: mpcExample.replace( /,,,/g, "---" )}) %>
 
 --- mpcExample -----------------------------------------------------------------
 
