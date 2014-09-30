@@ -5,6 +5,10 @@
 --- yaml -----------------------------------------------------------------------
 
 title:                  About MPCat.org
+urls:
+    stark:              https://github.com/emilis/stark
+    mpc:                https://github.com/emilis/mpc
+    source:             https://github.com/emilis/mpcat.org
 
 --- jst ------------------------------------------------------------------------
 
@@ -14,3 +18,15 @@ title:                  About MPCat.org
 <p>A web-app for testing and sharing your MPC code.</p>
 
 <p>Please send your feedback and suggestions to: <a href="mailto:emilis.d+mpcat@gmail.com">Emilis Dambauskas</a>.</p>
+
+<hr>
+
+<p>Built with <a href="<%- urls.stark %>" target="_blank">Stark</a> from <a href="<%- urls.mpc %>" target="_blank">Multi-Part Components</a>.</p>
+
+<p>Source code on GitHub: <a href="<%- urls.source %>" target="_blank">emilis/mpcat.org</a>.</p>
+
+--- css ------------------------------------------------------------------------
+
+body {
+    background:         #fff;
+}
