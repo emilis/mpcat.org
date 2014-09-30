@@ -1,10 +1,11 @@
 --- requirements ---------------------------------------------------------------
 
-    dom:    ../emilis/dom
+    ../zepto/event
 
 --- exports --------------------------------------------------------------------
 
     onClickRun
+    onClickSave
 
 --- jst ------------------------------------------------------------------------
 
@@ -14,8 +15,8 @@
     </a>
     <menu class="main">
         <button class="run">Run</button>
-        <!--
         <button class="save">Save</button>
+        <!--
         <button class="new">New</button>
         -->
     </menu>
@@ -28,20 +29,14 @@
 
 --- js -------------------------------------------------------------------------
 
-var runFn =             [];
-var onClickRun =        runFn.push.bind( runFn );
+function onClickRun( fn ){
 
-dom.eqs( "#header > .main > .run" ).onclick =    triggerRun;
-
-function triggerRun( evt ){
-
-    runFn.forEach( triggerEvent( this, evt ));
+    $( "#header > .main > .run" ).on( "click", fn );
 }///
 
-function triggerEvent( el, evt ){
-    return function( fn ){
-        return fn.call( el, evt );
-    };//
+function onClickSave( fn ){
+
+    $( "#header > .main > .save" ).on( "click", fn );
 }///
 
 --- less -----------------------------------------------------------------------

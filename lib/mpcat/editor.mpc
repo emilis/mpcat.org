@@ -1,0 +1,76 @@
+--- requirements ---------------------------------------------------------------
+
+    dom:                ../emilis/dom
+    compiler
+
+--- exports --------------------------------------------------------------------
+
+    setValue
+    getValue
+
+--- yaml -----------------------------------------------------------------------
+
+namespace:              mpcat-editor
+
+--- jst ------------------------------------------------------------------------
+
+<%
+var value =             value || "";
+%>
+<textarea class="<%- namespace %>"><%- value %></textarea>
+
+--- js -------------------------------------------------------------------------
+
+var el =                dom.eqs.bind( dom, "." + yaml.namespace );
+el().oninput =          onEditorInput;
+el().focus();
+
+/// Functions ------------------------------------------------------------------
+
+function getValue(){
+
+    return el().value;
+}///
+
+function setValue( str ){
+
+    return el().value = str;
+}///
+
+
+function onEditorInput( evt ){
+    
+    var logError =      Function.prototype;
+    
+    if ( console ){
+        if ( console.error ){
+            logError =  console.error.bind( console );
+        } else if ( console.log ){
+            logError =  console.log.bind( console );
+        }
+    }
+    
+    try {
+        compiler.compileCode( this.value );
+        this.style.backgroundColor =    "#222";
+    } catch( e ){
+        this.style.backgroundColor =    "#322";
+        logError( e );
+    }
+}///
+
+
+--- less -----------------------------------------------------------------------
+
+textarea.mpcat-editor {
+    box-sizing:         border-box;
+    width:              100%;
+    height:             500px;
+    padding:            1em;
+    margin:             0;
+    border:             0 none transparent;
+    background-color:   #222;
+    color:              #eee;
+}
+
+
