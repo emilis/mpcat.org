@@ -1,0 +1,33 @@
+--- requirements ---------------------------------------------------------------
+
+    ../pushdb/client
+
+--- exports --------------------------------------------------------------------
+
+    read
+    write
+
+--- yaml -----------------------------------------------------------------------
+
+baseUrl:                pushdb.mpcat.org
+
+--- js -------------------------------------------------------------------------
+
+var pdb =               PushDb( "//" + yaml.baseUrl );
+
+
+function read( id, cb ){
+
+    return pdb.readRaw( parseInt( id, 36 ).toString( 16 ), cb );
+}///
+
+
+function write( value, cb ){
+
+    return pdb.writeRaw( value, onWrite );
+
+    function onWrite( err, result ){
+        
+        cb( err, err ? result : parseInt( result, 16 ).toString( 36 ));
+    }///
+}///

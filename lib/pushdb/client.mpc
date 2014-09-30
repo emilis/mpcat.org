@@ -1,0 +1,99 @@
+--- requirements ---------------------------------------------------------------
+
+    ../jqueryapi/ajax
+
+--- js -------------------------------------------------------------------------
+
+;this.PushDb = function PushDb( baseUrl ){
+
+    /// Constants --------------------------------------------------------------
+
+    var DATA_TYPE =     "text";
+    var EXTENSION =     ".txt";
+    var PREFIX =        "data";
+    var TIMEOUT =       5e3;
+
+    /// Exports ----------------------------------------------------------------
+
+    return {
+        read:           read,
+        readRaw:        readRaw,
+        write:          write,
+        writeRaw:       writeRaw
+    };
+
+    /// Functions --------------------------------------------------------------
+
+    function read( id, cb ){
+
+        return readRaw( id, onRead );
+
+        function onRead( err, result ){
+
+            cb( err, err ? result : JSON.parse( result ));
+        }///
+    }///
+
+    function readRaw( id, cb ){
+
+        return $.ajax({
+            type:       "GET",
+            url:        getItemUrl( id ),
+            dataType:   DATA_TYPE,
+            timeout:    TIMEOUT,
+            cache:      true,
+            success:    onSuccess,
+            error:      onError
+        });
+
+        function onSuccess( data, status, xhr ){
+
+            cb( null, data );
+        }///
+
+        function onError( xhr, errorType, error ){
+
+            cb( error, { xhr: xhr, errorType: errorType, error: error });
+        }///
+    }///
+
+    function write( item, cb ){
+
+        return writeRaw( JSON.stringify( item ), cb );
+    }///
+
+    function writeRaw( value, cb ){
+
+        return $.ajax({
+            type:       "POST",
+            url:        baseUrl,
+            data:       { value: value },
+            dataType:   DATA_TYPE,
+            timeout:    TIMEOUT,
+            success:    onSuccess,
+            error:      onError
+        });
+
+        function onSuccess( data, status, xhr ){
+
+            cb( null, data );
+        }///
+
+        function onError( xhr, errorType, error ){
+
+            cb( error, { xhr: xhr, errorType: errorType, error: error });
+        }///
+    }///
+
+    function getItemUrl( id ){
+        id = "" + id;
+
+        return [
+            baseUrl,
+            PREFIX,
+            id[0] + id[1],
+            id[2] + id[3],
+            id[4] + id[5],
+            id + EXTENSION ].join( "/" );
+    }///
+};//
