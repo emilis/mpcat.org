@@ -1,0 +1,30 @@
+--- requirements ---------------------------------------------------------------
+
+    layout:             ../emilis/html5
+    header
+
+--- jst ------------------------------------------------------------------------
+
+<%= header() %>
+<main>
+    <article>
+        <%= content %>
+    </article>
+</main>
+
+--- less -----------------------------------------------------------------------
+
+main {
+
+    padding:            1em;
+    margin:             0;
+    background:         #fff;
+    color:              #000;
+
+    > article {
+
+        max-width:      36em;
+        margin:         0 auto;
+        padding:        1em 0;
+    }
+}

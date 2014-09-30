@@ -1,0 +1,12 @@
+--- requirements ---------------------------------------------------------------
+
+layout: ../lib/mpcat/page
+
+--- jst ------------------------------------------------------------------------
+
+<img src="/static/mpcat.org.png" alt="MPCat.org">
+<h1>MPCat.org</h1>
+
+<p>A web-app for testing and sharing your MPC code.</p>
+
+<p>Please send your feedback and suggestions to: <a href="mailto:emilis.d+mpcat@gmail.com">Emilis Dambauskas</a>.</p>

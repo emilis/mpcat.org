@@ -9,7 +9,10 @@
 
 --- jst ------------------------------------------------------------------------
 
-<header id="header">
+<%
+var mainMenu =  mainMenu || false;
+%>
+<header id="header" class="<%- mainMenu ? "show-main" : "" %>">
     <a href="/">
         <img class="logo" src="/static/mpcat.org-white.png" title="MPCat.org" alt="MPCat.org">
     </a>
@@ -21,6 +24,7 @@
         -->
     </menu>
     <menu class="settings">
+        <a href="/about/">About</a>
         <!--
         <button class="settings">Settings</button>
         -->
@@ -49,6 +53,15 @@ function onClickSave( fn ){
     color:              #fff;
     font-weight:        bold;
 
+    a { 
+        color:              #fff;
+        text-decoration:    underline;
+
+        &:hover {
+            text-decoration:none;
+        }
+    }
+
     > a > .logo {
 
         height:             2em;
@@ -62,8 +75,24 @@ function onClickSave( fn ){
         display:            inline-block;
         margin:             0;
 
+        > button {
+            font-size:      150%;
+            cursor:         pointer;
+        }
+
         &.settings {
             float:          right;
+            > a {
+                font-size:  150%;
+            }
         }
+    }
+
+    > menu.main {
+        display:            none;
+    }
+
+    &.show-main > menu.main {
+        display:            inline-block;
     }
 }

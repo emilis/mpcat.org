@@ -1,7 +1,8 @@
 --- requirements ---------------------------------------------------------------
 
     layout:         lib/emilis/html5
-    lib/mpcat/ide
+    ide:            lib/mpcat/ide
+    lib/mpcat/page
 
 --- yaml -----------------------------------------------------------------------
 
@@ -10,16 +11,35 @@ logo:               /static/mpcat.org-white.png
 
 --- jst ------------------------------------------------------------------------
 
-<img id="logo" src="<%- logo %>" title="<%- title %>">
+<%= ide({ mpcExample: mpcExample.replace( /,,,/g, "---" )}) %>
 
---- less -----------------------------------------------------------------------
+--- mpcExample -----------------------------------------------------------------
 
-body {
-    background:     #000;
+,,, requirements ---------
+
+//cdnjs.cloudflare.com/ajax/libs/zepto/1.1.4/zepto.js
+
+,,, html -----------------
+
+<button class="hello">Click me</button>
+
+,,, js -------------------
+
+var $button = $( ".hello" );
+$button.on( "click", onClickHello );
+
+function onClickHello(){
+
+    alert( "Hello World!" );
+    $button.css( "color", "green" );
+}///
+
+,,, css ------------------
+
+.hello {
+    font-size:      200%;
+    font-weight:    bold;
+    color:          red;
 }
 
-#logo {
 
-    display:        block;
-    margin:         100px auto;
-}

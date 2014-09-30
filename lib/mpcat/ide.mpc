@@ -9,7 +9,7 @@
 
 --- jst ------------------------------------------------------------------------
 
-<%= header() %>
+<%= header({ mainMenu: true }) %>
 <div id="panes">
     <div class="row">
         <div class="cell editor">
@@ -23,10 +23,20 @@
 
 --- js -------------------------------------------------------------------------
 
-header.onClickRun( onClickRun );
-header.onClickSave( onClickSave );
+init();
 
 /// Functions ------------------------------------------------------------------
+
+function init(){
+
+    header.onClickRun( onClickRun );
+    header.onClickSave( onClickSave );
+
+    if ( window.location.pathname[1] === "!" ){
+        editor.setValue( "loading..." );
+        tmpStorage.read( window.location.pathname.slice( 2 ), onLoad );
+    }
+}
 
 function onClickRun( evt ){
 
@@ -47,6 +57,16 @@ function onSave( err, result ){
         var url =   "http://mpcat.org/!" + result;
         window.history.pushState( null, null, "/!" + result );
         alert( "Saved. The url: " + url );
+    }
+}///
+
+function onLoad( err, result ){
+
+    if ( err ){
+        editor.setValue( "--- ERROR ---\n\nFailed to load the code: " + err );
+        console.error( err, result );
+    } else {
+        editor.setValue( result );
     }
 }///
 
