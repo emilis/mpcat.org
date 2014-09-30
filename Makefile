@@ -30,6 +30,12 @@ clean:\
 	rm -rf build/*
 
 
+.PHONY += publish
+publish:\
+
+	git push origin master
+
+
 .PHONY += backup
 backup:\
 
@@ -48,6 +54,7 @@ redeploy:\
 	default\
 	sync-static\
 	deploy\
+
 
 ### Targets --------------------------------------------------------------------
 
