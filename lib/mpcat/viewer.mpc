@@ -44,21 +44,35 @@ function createContentElements( content ){
 
 function createScripts( frameDoc, scripts, jsCode ){
 
-    var count =             scripts.length;
+    var count =             0;
 
-    if ( !scripts || !scripts.length ){
-        var js =            frameDoc.createElement( "script" );
-        js.innerHTML =      jsCode;
-        frameDoc.body.appendChild( js );
-    } else {
+    scripts && scripts.length && scripts.forEach( addScript );
 
-        content.scripts.forEach( addScript );
+    checkLoaded();
+
+    function checkLoaded(){
+
+        if ( count === 0 ){
+            var js =        frameDoc.createElement( "script" );
+            js.innerHTML =  jsCode;
+            frameDoc.body.appendChild( js );
+        }
+    }
 
     function addScript( src ){
 
+        count++;
+
         var script =        frameDoc.createElement( "script" );
-        script.src          src;
+        script.src =        src;
+        script.onload =     onLoadScript;
         frameDoc.head.appendChild( script );
+    }///
+
+    function onLoadScript(){
+
+        count--;
+        checkLoaded();
     }///
 }///
 
