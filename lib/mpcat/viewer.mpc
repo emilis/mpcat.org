@@ -37,15 +37,29 @@ function createContentElements( content ){
         frameDoc.head.appendChild( css );
     }
 
-    if ( content.html ){
-        frameDoc.body.innerHTML =   content.html;
-    }
+    frameDoc.body.innerHTML = content.html || "<p><em>No body content.</em></p>";
 
-    if ( content.js ){
+    createScripts( frameDoc, content.scripts, content.js );
+}///
+
+function createScripts( frameDoc, scripts, jsCode ){
+
+    var count =             scripts.length;
+
+    if ( !scripts || !scripts.length ){
         var js =            frameDoc.createElement( "script" );
-        js.innerHTML =      content.js;
+        js.innerHTML =      jsCode;
         frameDoc.body.appendChild( js );
-    }
+    } else {
+
+        content.scripts.forEach( addScript );
+
+    function addScript( src ){
+
+        var script =        frameDoc.createElement( "script" );
+        script.src          src;
+        frameDoc.head.appendChild( script );
+    }///
 }///
 
 

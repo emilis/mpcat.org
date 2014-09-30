@@ -15,17 +15,38 @@ function compileCode( code ){
 
 function compileParts( parts ){
 
-    var partMap =       parts.reduce( addPart, {} );
-
-    return {
+    var partMap =       parts.reduce( partListToMap, {} );
+    var result = {
         css:            partMap.css || "",
         js:             partMap.js || "",
         html:           partMap.html || ""
+    };
+
+    if ( partMap.requirements ){
+        result.scripts =    parseRequirements( partMap.requirements );
     }
 
-    function addPart( r, part ){
+    return result;
+}///
 
-        r[part.partName] =  part.content;
-        return r;
-    }///
+function parseRequirements( str ){
+
+    return str.split( "\n" ).map( trim ).filter( isNotEmpty );
+}///
+
+
+function partListToMap( r, part ){
+
+    r[part.partName] =  part.content;
+    return r;
+}///
+
+function trim( str ){
+
+    return str && str.trim && str.trim() || "";
+}///
+
+function isNotEmpty( x ){
+
+    return !!x;
 }///
