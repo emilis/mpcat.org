@@ -13,6 +13,10 @@ title:                  MPCat Editor
 
 --- mpcExample -----------------------------------------------------------------
 
+,,, requirements ---------
+
+//cdnjs.cloudflare.com/ajax/libs/zepto/1.1.4/zepto.js
+
 ,,, html -----------------
 
 <button class="hello">Click me</button>
@@ -23,6 +27,7 @@ document.querySelector( ".hello" ).onclick = onClickHello;
 
 function onClickHello(){
     alert( "Hello World!" );
+    $( ".hello" ).css( "color", "green" );
 }///
 
 ,,, css ------------------
