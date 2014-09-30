@@ -23,11 +23,13 @@ title:                  MPCat Editor
 
 ,,, js -------------------
 
-document.querySelector( ".hello" ).onclick = onClickHello;
+var $button = $( ".hello" );
+$button.on( "click", onClickHello );
 
 function onClickHello(){
+
     alert( "Hello World!" );
-    $( ".hello" ).css( "color", "green" );
+    $button.css( "color", "green" );
 }///
 
 ,,, css ------------------
@@ -37,4 +39,3 @@ function onClickHello(){
     font-weight:    bold;
     color:          red;
 }
-
