@@ -11,6 +11,7 @@ RRSYNC =		rsync -hlprt --del
 
 .PHONY = default
 default:\
+	build/.htaccess\
 	build/index.html\
 	build/style.css\
 	build/script.js\
@@ -40,7 +41,21 @@ deploy:\
 
 	$(RRSYNC) build/ mpcat@mpcat.org:mpcat.org/
 
+
+.PHONY += redeploy
+redeploy:\
+	clean\
+	default\
+	sync-static\
+	deploy\
+
 ### Targets --------------------------------------------------------------------
+
+build/.htaccess:\
+	.htaccess\
+
+	cp "$^" "$@"
+
 
 build/index.html:\
 	$(ALL_FILES)\
