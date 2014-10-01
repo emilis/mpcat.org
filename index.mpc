@@ -10,35 +10,35 @@ title:              MPCat.org
 
 --- jst ------------------------------------------------------------------------
 
-<%= ide({ mpcExample: mpcExample.replace( /,,,/g, "---" )}) %>
+<%= ide({ mpcExample: mpcExample.replace( /^    /gm, "" )}) %>
 
 --- mpcExample -----------------------------------------------------------------
 
-,,, requirements ---------
+    --- requirements ---------
 
-//cdnjs.cloudflare.com/ajax/libs/zepto/1.1.4/zepto.js
+    //cdnjs.cloudflare.com/ajax/libs/zepto/1.1.4/zepto.js
 
-,,, html -----------------
+    --- html -----------------
 
-<button class="hello">Click me</button>
+    <button class="hello">Click me</button>
 
-,,, js -------------------
+    --- js -------------------
 
-var $button = $( ".hello" );
-$button.on( "click", onClickHello );
+    var $button = $( ".hello" );
+    $button.on( "click", onClickHello );
 
-function onClickHello(){
+    function onClickHello(){
 
-    alert( "Hello World!" );
-    $button.css( "color", "green" );
-}///
+        alert( "Hello World!" );
+        $button.css( "color", "green" );
+    }///
 
-,,, css ------------------
+    --- css ------------------
 
-.hello {
-    font-size:      200%;
-    font-weight:    bold;
-    color:          red;
-}
+    .hello {
+        font-size:      200%;
+        font-weight:    bold;
+        color:          red;
+    }
 
 
