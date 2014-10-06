@@ -1,32 +1,35 @@
 --- requirements ---------------------------------------------------------------
 
-    layout:             ../lib/mpcat/page
+layout:             ../lib/mpcat/page
 
 --- yaml -----------------------------------------------------------------------
 
-title:                  About MPCat.org
-urls:
-    stark:              https://github.com/emilis/stark
-    mpc:                https://github.com/emilis/mpc
-    source:             https://github.com/emilis/mpcat.org
+title:              About MPCat.org
 
---- jst ------------------------------------------------------------------------
+--- markdown -------------------------------------------------------------------
 
-<img src="/static/mpcat.org.png" alt="MPCat.org">
-<h1>MPCat.org</h1>
+![MPCat.org][logo]
+# MPCat.org
 
-<p>A web-app for testing and sharing your MPC code.</p>
+A webapp for testing and sharing your MPC code.
 
-<p>Please send your feedback and suggestions to: <a href="mailto:emilis.d+mpcat@gmail.com">Emilis Dambauskas</a>.</p>
+Please send your feedback and suggestions to: [Emilis Dambauskas][email].
 
-<hr>
+* * *
 
-<p>Built with <a href="<%- urls.stark %>" target="_blank">Stark</a> from <a href="<%- urls.mpc %>" target="_blank">Multi-Part Components</a>.</p>
+Built with [Stark][stark] from [Multi-Part Components][mpc].
 
-<p>Source code on GitHub: <a href="<%- urls.source %>" target="_blank">emilis/mpcat.org</a>.</p>
+Source code on GitHub: [emilis/mpcat.org][source].
+
+
+[logo]:             /static/mpcat.org.png
+[email]:            mailto:emilis.d+mpcat@gmail.com
+[stark]:            https://github.com/emilis/stark
+[mpc]:              https://github.com/emilis/mpc
+[source]:           https://github.com/emilis/mpcat.org
 
 --- css ------------------------------------------------------------------------
 
 body {
-    background:         #fff;
+    background:     #fff;
 }
