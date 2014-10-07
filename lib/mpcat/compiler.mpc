@@ -19,12 +19,9 @@ function compileParts( parts ){
     var result = {
         css:            partMap.css || "",
         js:             partMap.js || "",
-        html:           partMap.html || ""
+        html:           partMap.html || "",
+        requirements:   parseRequirements( partMap.requirements || "" )
     };
-
-    if ( partMap.requirements ){
-        result.scripts =    parseRequirements( partMap.requirements );
-    }
 
     return result;
 }///

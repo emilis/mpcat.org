@@ -39,7 +39,39 @@ function createContentElements( content ){
 
     frameDoc.body.innerHTML = content.html || "<p><em>No body content.</em></p>";
 
-    createScripts( frameDoc, content.scripts, content.js );
+    linkExternal( frameDoc, content.requirements, content.js );
+}///
+
+function linkExternal( frameDoc, requirements, jsCode ){
+
+    createScripts( frameDoc, requirements.filter( isScriptUrl ), jsCode );
+    requirements.filter( isCssUrl ).forEach( addCssLink );
+
+    function isUrl( requirement ){
+        return requirement.indexOf( "//" ) !== -1;
+    }///
+
+    function isScriptUrl( url ){
+        return isUrl( url ) && url.slice( -3 ) === ".js";
+    }///
+
+    function isCssUrl( url ){
+        return isUrl( url ) && url.slice( -4 ) === ".css";
+    }///
+
+    function addCssLink( url ){
+
+        var link =          dom.create( "link", {
+            rel:            "stylesheet",
+            type:           "text/css",
+            href:           url
+        });
+        frameDoc.head.appendChild( link );
+    }///
+}///
+
+function createCssLinks( frameDoc, links ){
+
 }///
 
 function createScripts( frameDoc, scripts, jsCode ){
