@@ -16,29 +16,31 @@ title:              MPCat.org
 
     --- requirements ---------
 
+    //maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css
     //cdnjs.cloudflare.com/ajax/libs/zepto/1.1.4/zepto.js
 
     --- html -----------------
 
-    <button class="hello">Click me</button>
+    <button class="btn btn-warning hello">Click me</button>
 
     --- js -------------------
 
-    var $button = $( ".hello" );
-    $button.on( "click", onClickHello );
+    $( ".hello" ).on( "click", onClickHello );
 
     function onClickHello(){
 
-        alert( "Hello World!" );
-        $button.css( "color", "green" );
-    }///
+        $( this )
+            .removeClass( "btn-warning" )
+            .addClass( "btn-success" )
+            .text( 'Hello World!' );
+
+        $( document.body )
+            .append( "<p>Clicked at " + new Date + ".</p>" );
+    }
 
     --- css ------------------
 
-    .hello {
+    button.hello {
         font-size:      200%;
         font-weight:    bold;
-        color:          red;
     }
-
-
