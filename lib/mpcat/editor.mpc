@@ -5,36 +5,42 @@
 
 --- exports --------------------------------------------------------------------
 
+    selector:           yaml.selector
     setValue
     getValue
 
 --- yaml -----------------------------------------------------------------------
 
-namespace:              mpcat-editor
+className:              mpcat-editor
+selector:               .mpcat-editor
+value:                  ""
 
 --- jst ------------------------------------------------------------------------
 
-<%
-var value =             value || "";
-%>
-<textarea class="<%- namespace %>"><%- value %></textarea>
+<textarea class="<%- className %>"><%- value %></textarea>
 
 --- js -------------------------------------------------------------------------
 
-var el =                dom.eqs.bind( dom, "." + yaml.namespace );
-el().oninput =          onEditorInput;
-el().focus();
+dom.eqa( yaml.selector ).forEach( initElement );
+
+var getEl =             dom.eqs.bind( dom, yaml.selector );
 
 /// Functions ------------------------------------------------------------------
 
+function initElement( el ){
+
+    el.oninput =        onEditorInput;
+    el.focus();
+}///
+
 function getValue(){
 
-    return el().value;
+    return getEl().value;
 }///
 
 function setValue( str ){
 
-    return el().value = str;
+    return getEl().value = str;
 }///
 
 
