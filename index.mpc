@@ -19,7 +19,7 @@ title:                  MPCat.org
 
     Welcome to MPCat.org.
 
-    You can edit this code, click [Run»] and it will be executed in the viewer window. More info is at the bottom.
+    You can edit this code. Click [Run»] and it will be executed in the viewer window. More info is at the bottom.
 
     --- requirements --------------------------
 
@@ -29,6 +29,13 @@ title:                  MPCat.org
     --- html ----------------------------------
 
     <button class="btn btn-warning hello">Click me</button>
+
+    --- css -----------------------------------
+
+    button.hello {
+        font-size:      200%;
+        font-weight:    bold;
+    }
 
     --- js ------------------------------------
 
@@ -44,14 +51,6 @@ title:                  MPCat.org
         $( document.body )
             .append( "<p>Clicked at " + new Date + ".</p>" );
     }
-
-    --- css -----------------------------------
-
-    button.hello {
-        font-size:      200%;
-        font-weight:    bold;
-    }
-
 
     --- more-info -----------------------------
 
