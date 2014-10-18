@@ -15,16 +15,22 @@ title:                  MPCat.org
 
 --- mpcExample -----------------------------------------------------------------
 
-    --- requirements ---
+    --- Welcome ---
+
+    Welcome to MPCat.org.
+
+    You can edit this code, click [Run»] and it will be executed in the viewer window. More info is at the bottom.
+
+    --- requirements --------------------------
 
     //maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css
     //cdnjs.cloudflare.com/ajax/libs/zepto/1.1.4/zepto.js
 
-    --- html -----------------
+    --- html ----------------------------------
 
     <button class="btn btn-warning hello">Click me</button>
 
-    --- js -------------------
+    --- js ------------------------------------
 
     $( ".hello" ).on( "click", onClickHello );
 
@@ -39,9 +45,33 @@ title:                  MPCat.org
             .append( "<p>Clicked at " + new Date + ".</p>" );
     }
 
-    --- css ------------------
+    --- css -----------------------------------
 
     button.hello {
         font-size:      200%;
         font-weight:    bold;
     }
+
+
+    --- more-info -----------------------------
+
+    This is an example of a multi-part component. When run it should show an orange button with text "Click me", which turns green with text "Hello World!" after you click it.
+
+    Multi-part components are files that are split into parts with a special syntax. To add a new part, add:
+
+    1) empty line,
+    2) line containing "--- ", part name, " ---",
+    3) empty line,
+    4) part text.
+
+    If you make an error in MPC syntax, the background will turn to red.
+
+    There are no checks for correctness of HTML/CSS/JS code at the moment.
+
+    Click "Share" in the menu to get a url for your code.
+
+    Have fun!
+
+     |\=/|
+     /© ©\
+    =\_Y_/=
