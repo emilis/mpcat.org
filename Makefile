@@ -4,6 +4,7 @@ SRC =			lib
 MAIN =			index.mpc
 SRC_FILES =		$(shell find $(SRC) -type f)
 ALL_FILES =		Makefile $(MAIN) $(SRC_FILES)
+BUILD =			stark build
 LRSYNC =		rsync -ghlport --del
 RRSYNC =		rsync -hlprt --del
 
@@ -67,22 +68,22 @@ build/.htaccess:\
 build/index.html:\
 	$(ALL_FILES)\
 
-	stark
+	$(BUILD)
 
 
 build/style.css:\
 	$(ALL_FILES)\
 
-	stark
+	$(BUILD)
 
 
 build/script.js:\
 	$(ALL_FILES)\
 
-	stark
+	$(BUILD)
 
 
 build/pages:\
 	pages\
 
-	stark
+	$(BUILD)
