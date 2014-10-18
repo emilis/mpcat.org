@@ -1,0 +1,52 @@
+--- description ----------------------------------------------------------------
+
+Forked from:
+    https://github.com/kueblc/LDT/blob/master/lib/Parser.js
+
+--- exports --------------------------------------------------------------------
+
+create
+
+--- js -------------------------------------------------------------------------
+
+function create( rules, modifiers ){
+
+    modifiers =         modifiers || "";
+
+    var parseRE =       null;
+    var ruleSrc =       [];
+    var ruleMap =       {};
+    
+    add( rules );
+
+    return {
+        add:            add,
+        tokenize:       tokenize,
+        identify:       identify
+    };
+
+    function add( rules ){
+
+        for( var rule in rules ){
+
+            var s =         rules[rule].source;
+            ruleSrc.push( s );
+            ruleMap[rule] = new RegExp( '^(' + s + ')$', modifiers );
+        }
+        parseRE =           new RegExp( ruleSrc.join( "|" ), "g" + modifiers );
+    }///
+
+    function tokenize( input ){
+
+        return input.match( parseRE );
+    }///
+
+    function identify( token ){
+
+        for( var rule in ruleMap ){
+            if( ruleMap[rule].test( token )){
+                return rule;
+            }
+        }
+    }///
+}///
