@@ -8,7 +8,7 @@ updateContent
 
 --- jst ------------------------------------------------------------------------
 
-<div class="mpc-viewer"><em>Click [Run] to update output...</em></div>
+<div class="mpc-viewer"><em>Click [Run»] to update output...</em></div>
 
 --- js -------------------------------------------------------------------------
 

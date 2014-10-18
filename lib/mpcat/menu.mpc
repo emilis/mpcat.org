@@ -20,8 +20,8 @@ toggleEditBtn
     </a>
 
     <menu class="primary">
-        <button class="edit hide">{&hellip;}</button>
-        <button class="run">&#8883;</button>
+        <button class="edit hide">«Ed</button>
+        <button class="run">R<span class="onwide">un</span>»</button>
         <button class="toggle">&equiv;</button>
     </menu>
     
@@ -90,15 +90,18 @@ function toggleEditBtn( show ){
         > a,
         > button {
 
-            padding:    0.25em 0.5em;
-            border:     1px outset #666;
-            border-radius:  3px;
+            padding:            0.25em 0.5em;
+            border:             1px outset #666;
+            border-radius:      3px;
+            cursor:             pointer;
 
-            background: #111;
-            color:      #bbb;
+            background:         #111;
+            color:              #bbb;
 
-            font-size:  16pt;
-            cursor:     pointer;
+            text-decoration:    none;
+            font-family:        @sans;
+            font-size:          14pt;
+            font-weight:        bold;
 
             &:hover {
                 background:     #222;
@@ -107,6 +110,10 @@ function toggleEditBtn( show ){
             }
 
             &.hide {
+                display:    none;
+            }
+
+            > .onwide {
                 display:    none;
             }
         }
@@ -154,6 +161,10 @@ function toggleEditBtn( show ){
                 margin:             0 2% 0.25em;
                 text-align:         center;
                 cursor:             pointer;
+
+                > .onwide {
+                    display:        inline;
+                }
             }
         }
 
