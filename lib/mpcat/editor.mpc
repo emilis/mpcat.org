@@ -1,6 +1,8 @@
 --- requirements ---------------------------------------------------------------
 
 dom:                    ../emilis/dom
+ldtParser:              ../ldt/parser
+ldtDecorator:           ../ldt/decorator
 compiler
 
 --- exports --------------------------------------------------------------------
@@ -24,11 +26,19 @@ value:                  ""
 
 dom.eqa( yaml.selector ).forEach( initElement );
 
-var getEl =             dom.eqs.bind( dom, yaml.selector );
+var getEl =             dom.eqs.bind( dom, yaml.selector + " > label > textarea" );
 
 /// Functions ------------------------------------------------------------------
 
 function initElement( el ){
+
+    ldtDecorator.wrapElement(
+        ldtParser.create({
+            mpcheader:  /^--- [-a-z0-9]+ ---+\s*$/,
+            whitespace: /\s+/,
+            other:      /\S+/
+        }, "im"),
+        el );
 
     el.oninput =        onEditorInput;
     el.focus();
@@ -51,7 +61,7 @@ function focus(){
 
 
 function onEditorInput( evt ){
-    
+
     var logError =      Function.prototype;
     
     if ( console ){
@@ -64,9 +74,9 @@ function onEditorInput( evt ){
     
     try {
         compiler.compileCode( this.value );
-        this.style.backgroundColor =    "#222";
+        /// this.style.backgroundColor =    "#222";
     } catch( e ){
-        this.style.backgroundColor =    "#322";
+        /// this.style.backgroundColor =    "#322";
         logError( e );
     }
 }///
@@ -74,6 +84,38 @@ function onEditorInput( evt ){
 
 --- less -----------------------------------------------------------------------
 
+.ldt {
+
+    background-color:       #111;
+
+    > pre,
+    > label > textarea {
+
+        color:              #ddd;
+
+        padding:            0;
+        margin:             0;
+        border:             0 none transparent;
+        white-space:        pre-wrap;
+
+        font-family:        @monospace;
+        font-size:          15px;
+    }
+
+    > label > textarea {
+        
+        color:              fade( #ddd, 100 * @ldtAlpha );
+    }
+}
+
+/// Token highliting:
+
+.ldt > pre {
+
+    > .mpcheader { color:   lighten( green, 20%); }
+}
+
+/*
 textarea.mpcat-editor {
 
     box-sizing:         border-box;
@@ -87,5 +129,5 @@ textarea.mpcat-editor {
     color:              #eee;
     font-family:        monospace;
 }
-
+*/
 
