@@ -1,23 +1,28 @@
 --- requirements ---------------------------------------------------------------
 
-    dom:                ../emilis/dom
-    compiler
-    editor
-    header
-    tmpStorage:         tmp-storage
-    viewer
+dom:                    ../emilis/dom
+cards
+compiler
+editor
+menu
+tmpStorage:             tmp-storage
+viewer
+
 
 --- jst ------------------------------------------------------------------------
 
-<%= header({ mainMenu: true }) %>
-<div id="panes">
-    <div class="row">
-        <div class="cell editor">
-            <%= editor({ value: mpcExample }) %>
-        </div>
-        <div class="cell viewer">
-            <%= viewer() %>
-        </div>
+<div class="mpcat-ide">
+    <div class="menu">
+        <%= menu() %>
+    </div>
+    <div class="cards">
+        <%= cards({
+            editor:     editor({
+                value:  mpcExample,
+            }),
+            viewer:     viewer(),
+            })
+        %>
     </div>
 </div>
 
@@ -29,8 +34,9 @@ init();
 
 function init(){
 
-    header.onClickRun( onClickRun );
-    header.onClickSave( onClickSave );
+    menu.onClickRun( onClickRun );
+    menu.onClickEdit( onClickEdit );
+    menu.onClickShare( onClickShare );
 
     if ( window.location.pathname[1] === "!" ){
         editor.setValue( "loading..." );
@@ -41,9 +47,18 @@ function init(){
 function onClickRun( evt ){
 
     viewer.updateContent( compiler.compileCode( editor.getValue() ));
+    cards.showViewer();
+    menu.toggleEditBtn( true );
 }///
 
-function onClickSave( evt ){
+function onClickEdit( evt ){
+
+    cards.showEditor();
+    editor.focus();
+    menu.toggleEditBtn( false );
+}///
+
+function onClickShare( evt ){
 
     tmpStorage.write( editor.getValue(), onSave );
 }
@@ -72,40 +87,60 @@ function onLoad( err, result ){
 
 --- less -----------------------------------------------------------------------
 
+@wWide:                 64em;
+@zMenu:                 100;
+
 body {
+
+    position:           absolute;
+    width:              100%;
     height:             100%;
     padding:            0;
     margin:             0;
-    background:         #222;
 }
 
-#panes {
-    clear:              both;
-    display:            table;
+.mpcat-ide {
+
     position:           absolute;
-    top:                3em;
-    bottom:             0;
-    left:               0;
     width:              100%;
+    height:             100%;
+    padding:            0;
+    margin:             0;
 
-    > .row {
-        display:            table-row;
-        height:             100%;
+    > .menu {
 
-        > .cell {
-            display:            table-cell;
-            vertical-align:     top;
-            width:              50%;
-            height:             500px;
-            margin:             0;
-            overflow-y:         auto;
+        position:       fixed;
+        right:          0;
+        z-index:        @zMenu;
+    }
 
-            &.viewer {
-                position:       relative;
-                padding:        1em;
-                background:     #fff;
-            }
-        }
+    > .cards {
+
+        position:       absolute;
+        width:          100%;
+        height:         100%;
+        margin:         0;
+        padding:        0;
+        box-sizing:     border-box;
     }
 }
 
+/// Responsive -----------------------------------------------------------------
+
+@media ( min-width: @wWide ){
+
+    .mpcat-ide {
+
+        > .menu {
+            width:      6em;
+            height:     100%;
+            left:       0;
+            right:      none;
+        }
+
+        > .cards {
+            
+            padding:    0 0 0 6em;
+        }
+    }
+}

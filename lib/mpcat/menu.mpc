@@ -1,0 +1,189 @@
+--- requirements ---------------------------------------------------------------
+
+../zepto/zepto
+../zepto/event
+
+--- exports --------------------------------------------------------------------
+
+onClickRun
+onClickEdit
+onClickShare
+onClickSave:            onClickShare
+toggleEditBtn
+
+--- jst ------------------------------------------------------------------------
+
+<div class="mpcat-menu">
+
+    <a href="/" class="logo">
+        <img src="/static/mpcat.org-vertical-white.png" title="MPCat.org" alt="MPCat.org">
+    </a>
+
+    <menu class="primary">
+        <button class="edit hide">{&hellip;}</button>
+        <button class="run">&#8883;</button>
+        <button class="toggle">&equiv;</button>
+    </menu>
+    
+    <menu class="secondary">
+        <button class="share">Share</button>
+        <a class="about" href="/about/">About</a>
+    </menu>
+</div>
+
+--- js -------------------------------------------------------------------------
+
+$( init );
+
+function init(){
+
+    var $div =          $( ".mpcat-menu" );
+    var $secondary =    $div.children( ".secondary" );
+    var $toggle =       $div.find( ".primary > .toggle" );
+
+    var opened =        false;
+    toggleEditBtn( false );
+
+    $toggle.on( "click", toggleSecondary );
+
+    function toggleSecondary(){
+
+        opened =        !opened;
+        $secondary.toggleClass( "opened", opened );
+    }///
+}///
+
+
+function onClickRun( fn ){
+
+    $( ".mpcat-menu > .primary > .run" ).on( "click", fn );
+}///
+
+function onClickEdit( fn ){
+
+    $( ".mpcat-menu > .primary > .edit" ).on( "click", fn );
+}///
+
+function onClickShare( fn ){
+
+    $( ".mpcat-menu > .secondary > .share" ).on( "click", fn );
+}///
+
+function toggleEditBtn( show ){
+
+    $( ".mpcat-menu > .primary > .edit" ).toggleClass( "hide", !show );
+}///
+
+--- less -----------------------------------------------------------------------
+
+@zMenu:                 100;
+
+.mpcat-menu {
+
+    z-index:            @zMenu;
+
+    > menu {
+
+        padding:        0;
+        margin:         0;
+
+        > a,
+        > button {
+
+            padding:    0.25em 0.5em;
+            border:     1px outset #666;
+            border-radius:  3px;
+
+            background: #111;
+            color:      #bbb;
+
+            font-size:  16pt;
+            cursor:     pointer;
+
+            &:hover {
+                background:     #222;
+                color:          #fff;
+                border-color:   #999;
+            }
+
+            &.hide {
+                display:    none;
+            }
+        }
+    }
+
+    > .logo {
+
+        display:        none;
+    }
+
+    > .primary {
+
+        text-align:     right;
+    }
+
+    > .secondary {
+        
+        display:        none;
+
+        &.opened {
+            
+            display:    block;
+        }
+    }
+}
+
+/// Responsive -----------------------------------------------------------------
+
+@media( min-width: @wWide ){
+
+    .mpcat-menu{
+
+        position:       relative;
+        height:         100%;
+        background:     #000;
+        color:          #fff;
+
+        > menu {
+            > a,
+            > button {
+
+                display:            block;
+                width:              96%;
+                box-sizing:         border-box;
+                margin:             0 2% 0.25em;
+                text-align:         center;
+                cursor:             pointer;
+            }
+        }
+
+        > .logo,
+        > .logo > img {
+        
+            display:            block;
+            max-width:          80%;
+            padding-top:        0.25em;
+            margin:             0 auto 1em;
+        }
+
+        > .primary {
+        
+            > .edit,
+            > .toggle {
+            
+                display:    none;
+            }
+        }
+
+        > .secondary {
+
+            display:    block;
+
+            > a,
+            > button {
+                
+                display:        block;
+            }
+        }
+    }
+}

@@ -1,0 +1,66 @@
+--- requirements ---------------------------------------------------------------
+
+../zepto/zepto
+
+--- exports --------------------------------------------------------------------
+
+showEditor
+showViewer
+
+--- jst ------------------------------------------------------------------------
+
+<div class="mpcat-cards">
+    <div class="editor active"><%= editor %></div>
+    <div class="viewer"><%= viewer %></div>
+</div>
+
+--- js -------------------------------------------------------------------------
+
+var showEditor =        showCard.bind( this, ".editor" );
+var showViewer =        showCard.bind( this, ".viewer" );
+
+function showCard( selector ){
+
+    $( ".mpcat-cards" )
+        .children( "div" )
+        .removeClass( "active" )
+        .filter( selector )
+        .addClass( "active" );
+
+}///
+
+--- less -----------------------------------------------------------------------
+
+.mpcat-cards {
+
+    position:           relative;
+    width:              100%;
+    height:             100%;
+
+    > div {
+
+        display:        none;
+        width:          100%;
+        height:         100%;
+
+        &.active {
+
+            display:    block;
+        }
+    }
+}
+
+/// Responsive -----------------------------------------------------------------
+
+@media( min-width: @wWide ){
+
+    .mpcat-cards {
+
+        > div {
+
+            display:    block;
+            width:      50%;
+            float:      left;
+        }
+    }
+}

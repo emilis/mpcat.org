@@ -1,13 +1,14 @@
 --- requirements ---------------------------------------------------------------
 
-    dom:                ../emilis/dom
-    compiler
+dom:                    ../emilis/dom
+compiler
 
 --- exports --------------------------------------------------------------------
 
-    selector:           yaml.selector
-    setValue
-    getValue
+selector:               yaml.selector
+setValue
+getValue
+focus
 
 --- yaml -----------------------------------------------------------------------
 
@@ -43,6 +44,11 @@ function setValue( str ){
     return getEl().value = str;
 }///
 
+function focus(){
+
+    getEl().focus();
+}///
+
 
 function onEditorInput( evt ){
     
@@ -72,7 +78,7 @@ textarea.mpcat-editor {
 
     box-sizing:         border-box;
     width:              100%;
-    height:             500px;
+    height:             100%;
     padding:            1em;
     margin:             0;
     border:             0 none transparent;
