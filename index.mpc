@@ -1,12 +1,13 @@
 --- requirements ---------------------------------------------------------------
 
-    layout:         lib/emilis/html5
-    ide:            lib/mpcat/ide
-    lib/mpcat/page
+    layout:             lib/emilis/html5
+    ide:                lib/mpcat/ide
+    
+    lib/mpcat/common
 
 --- yaml -----------------------------------------------------------------------
 
-title:              MPCat.org
+title:                  MPCat.org
 
 --- jst ------------------------------------------------------------------------
 
@@ -14,7 +15,7 @@ title:              MPCat.org
 
 --- mpcExample -----------------------------------------------------------------
 
-    --- requirements ---------
+    --- requirements ---
 
     //maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css
     //cdnjs.cloudflare.com/ajax/libs/zepto/1.1.4/zepto.js
