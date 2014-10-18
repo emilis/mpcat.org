@@ -1,1 +1,6 @@
 ErrorDocument 404 /index.html
+
+<filesMatch ".(html|htm)$">
+
+    Header set Cache-Control "max-age=120, public, must-revalidate"
+</filesMatch>
