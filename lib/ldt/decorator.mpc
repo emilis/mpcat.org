@@ -3,6 +3,10 @@
 Forked from:
     https://github.com/kueblc/LDT/blob/master/lib/TextareaDecorator.js
 
+--- requirements ---------------------------------------------------------------
+
+../zepto/zepto
+
 --- exports --------------------------------------------------------------------
 
 selector:               yaml.selector
@@ -48,12 +52,12 @@ function wrapElement( parser, textarea ){
     }
     textarea.className =    "";
     textarea.spellcheck =   false;
-    ///textarea.wrap =         "off";
 
     label.appendChild( textarea );
 
     var update =        createOnInput( textarea, output, parser );
-    initEvents( textarea, update );
+    $( textarea ).on( "input", update );
+    update();
 
     return {
         element:        parent,
@@ -65,45 +69,17 @@ function wrapElement( parser, textarea ){
 
 /// private functions ----------------------------------------------------------
 
-
-function initEvents( textarea, update ){
-
-	// detect all changes to the textarea,
-	// including keyboard input, cut/copy/paste, drag & drop, etc
-	if( textarea.addEventListener ){
-
-		// standards browsers: oninput event
-		textarea.addEventListener( "input", update, false );
-	
-    } else if ( textarea.attachEvent ){
-		
-        // MSIE: detect changes to the 'value' property
-		textarea.attachEvent( "onpropertychange", function( e ){
-			if( e.propertyName.toLowerCase() === 'value' ){
-				update();
-			}
-		});
-	} else {
-        
-        throw Error( "Don't know how to bind events to textarea in this browser" );
-    }
-
-    update();
-}///
-
-
 function createOnInput( textarea, output, parser ){
     return function update(){
 
         if ( textarea.value.trim() ){
 
             updateSpans( parser, output, textarea.value );
-            /// updateColsRows( textarea );
+            $( textarea ).height( $( output ).height() + 40 );
+
         } else {
 
             output.innerHTML =  "";
-            /// textarea.cols =     1;
-            /// textarea.rows =     1;
         }
     };//
 }///
@@ -152,29 +128,6 @@ function updateSpans( parser, output, code ){
     }
 }///
 
-
-function updateColsRows( textarea ){
-
-    var lines =         textarea.value.split( '\n' );
-    var maxlen =        0;
-    var curlen;
-
-    for ( var i=0; i<lines.length; i++ ){
-
-        var tabLength = 0;
-        var offset =    -1;
-
-        while(( offset = lines[i].indexOf( '\t', offset + 1 )) > -1 ){
-            
-            tabLength += 7 - ( tabLength + offset ) % 8;
-        }
-
-        var curlen =    lines[i].length + tabLength;
-        maxlen =        maxlen > curlen ? maxlen : curlen;
-    }
-    textarea.cols =     maxlen + 1;
-    textarea.rows =     lines.length + 1;
-}///
 
 --- less -----------------------------------------------------------------------
 
