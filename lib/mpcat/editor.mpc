@@ -120,10 +120,16 @@ textarea.mpcat-editor {
 
         color:              #ccc;
 
+        display:            block;
+        width:              100%;
+        min-height:         100%;
         padding:            0;
         margin:             0;
         border:             0 none transparent;
+
         white-space:        pre-wrap;
+        word-wrap:          break-word;
+        word-break:         normal;
 
         font-family:        @monospace;
         font-size:          15px;
