@@ -4,6 +4,7 @@ dom:                    ../emilis/dom
 ldtParser:              ../ldt/parser
 ldtDecorator:           ../ldt/decorator
 compiler
+tokens
 
 --- exports --------------------------------------------------------------------
 
@@ -33,12 +34,9 @@ var getEl =             dom.eqs.bind( dom, yaml.selector + " > label > textarea"
 function initElement( el ){
 
     ldtDecorator.wrapElement(
-        ldtParser.create({
-            mpcheader:  /^--- [-a-z0-9]+ ---+\s*$/,
-            whitespace: /\s+/,
-            other:      /\S+/
-        }, "im"),
-        el );
+        ldtParser.create( tokens.rules, tokens.modifiers ),
+        el
+    );
 
     el.oninput =        onEditorInput;
     el.focus();
@@ -91,7 +89,7 @@ function onEditorInput( evt ){
     > pre,
     > label > textarea {
 
-        color:              #ddd;
+        color:              #ccc;
 
         padding:            0;
         margin:             0;
@@ -104,15 +102,8 @@ function onEditorInput( evt ){
 
     > label > textarea {
         
-        color:              fade( #ddd, 100 * @ldtAlpha );
+        color:              fade( #ccc, 100 * @ldtAlpha );
     }
-}
-
-/// Token highliting:
-
-.ldt > pre {
-
-    > .mpcheader { color:   lighten( green, 20%); }
 }
 
 /*

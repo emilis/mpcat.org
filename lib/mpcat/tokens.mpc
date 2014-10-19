@@ -1,0 +1,60 @@
+--- exports --------------------------------------------------------------------
+
+modifiers
+rules
+
+--- js -------------------------------------------------------------------------
+
+var modifiers = "im";
+
+var rules = {
+    whitespace: /\s+/,
+    mpcheader:  /^--- [-a-z0-9]+ ---+\s*$/,
+    catEyes:    /[©]+/,
+    strings:    /['"][^'"]+['"]/,
+    tagOpen:    /\<[a-z]+/,
+    tagClose:   /\<\/[a-z]+>/,
+    brackets:   /\(|\)|\{|\}|\[|\]/,
+    operations: /\+|-|\*|\/|%|<<|>>|:|\.|,/,
+    inthex:     /0x[0-9]+/,
+    percent:    /[0-9]*\.?[0-9]+%/,
+    float:      /[0-9]*\.[0-9]+/,
+    int:        /[0-9]+/,
+    keywords:   /\$|var|=|function|this|return|const|module|if|else|while|for|case|break/,
+    text:       /[_a-z]+/,
+    other:      /\S+/
+};
+
+function abc(){
+
+}///
+
+--- less -----------------------------------------------------------------------
+
+/// Token highliting:
+
+.ldt > pre {
+
+    @yellow:        lighten( yellow, 20% );
+    @green:         lighten( green, 10% );
+    @cyan:          darken( cyan, 40% );
+    @blue:          lighten( blue, 30% );
+    @magenta:       lighten( magenta, 20% );
+    @red:           darken( red, 10% );
+    @orange:        #f62;
+    @gray:          darken( white, 60% );
+
+    > .mpcheader {  color:  @green; }
+
+    > .tagOpen {    color:  @blue; }
+    > .tagClose {   color:  @blue; }
+    > .brackets {   color:  @cyan; }
+    > .operations { color:  @gray; }
+    > .catEyes {    color:  @green; }
+    > .strings {    color:  @yellow; }
+    > .int,
+    > .inthex,
+    > .float,
+    > .percent {    color:  @orange; }
+    > .keywords {   color:  @red; }
+}
