@@ -5,6 +5,7 @@ Forked from:
 
 --- requirements ---------------------------------------------------------------
 
+../zepto/event
 ../zepto/zepto
 
 --- exports --------------------------------------------------------------------
@@ -56,6 +57,7 @@ function wrapElement( parser, textarea ){
     label.appendChild( textarea );
 
     var update =        createOnInput( textarea, output, parser );
+    /// console.log( "wrapElement", textarea, update, $ );
     $( textarea ).on( "input", update );
     update();
 
