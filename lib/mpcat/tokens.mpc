@@ -18,7 +18,8 @@ var rules = {
     percent:    /[0-9]*\.?[0-9]+%/,
     float:      /[0-9]*\.[0-9]+/,
     int:        /[0-9]+/,
-    keywords:   /\$|var|=|function|this|new|return|const|module|if|else|while|for|case|break|window|document/,
+    statements: /=|var|function|new|return|const|module|if|else|while|for|switch|case|break/,
+    keywords:   /\$|this|window|document|true|false|null|undefined|Object|Number|String|Date|RegExp|Error/,
     text:       /[_a-z]+/,
     brackets:   /[<>(){}[\]]+/,
     operations: /[-+*/%:]+/,
@@ -36,19 +37,20 @@ function abc(){
 
 .ldt > pre {
 
-    @yellow:        desaturate( lighten( yellow, 20% ), 20% );
+    @yellow:        desaturate( yellow, 50% );
     @green:         lighten( green, 10% );
-    @cyan:          darken( cyan, 40% );
+    @cyan:          darken( cyan, 30% );
     @blue:          desaturate( lighten( blue, 20% ), 50% );
-    @magenta:       lighten( magenta, 20% );
+    @magenta:       desaturate( magenta, 70% );
     @red:           desaturate( red, 40% );
     @orange:        #f62;
+    @brown:         desaturate( darken( #f82, 30% ), 50% );
     @gray:          darken( white, 60% );
 
-    > .mpcheader {  color:  @green; }
+    > .mpcheader {  color:  @cyan; }
 
-    > .tagOpen {    color:  @blue; }
-    > .tagClose {   color:  @blue; }
+    > .tagOpen {    color:  @cyan; }
+    > .tagClose {   color:  @cyan; }
     > .brackets {   color:  @cyan; }
     > .operations { color:  @gray; }
     > .syntax {     color:  @gray; }
@@ -58,5 +60,6 @@ function abc(){
     > .inthex,
     > .float,
     > .percent {    color:  @orange; }
-    > .keywords {   color:  @red; }
+    > .keywords {   color:  @orange; }
+    > .statements { color:  @green; }
 }
