@@ -72,6 +72,8 @@ var rules = {
     > .operations {     color:  @gray; }
     > .syntax {         color:  @gray; }
 
+    > .comments {       color:  @gray; }
+
 
     > .catEyes {        color:  #360; }
     
