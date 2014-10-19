@@ -72,9 +72,7 @@ function onEditorInput( evt ){
     
     try {
         compiler.compileCode( this.value );
-        /// this.style.backgroundColor =    "#222";
     } catch( e ){
-        /// this.style.backgroundColor =    "#322";
         logError( e );
     }
 }///
@@ -106,7 +104,6 @@ function onEditorInput( evt ){
     }
 }
 
-/*
 textarea.mpcat-editor {
 
     box-sizing:         border-box;
@@ -120,5 +117,4 @@ textarea.mpcat-editor {
     color:              #eee;
     font-family:        monospace;
 }
-*/
 
