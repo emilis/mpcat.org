@@ -10,24 +10,27 @@ var modifiers =         "";
 var rules = {
     mpcstart:           /^--- [-_a-zA-Z0-9]+ ---+ *[\r\n] *[\r\n]/,
     mpcheader:          /[\r\n] *[\r\n]--- [-_a-zA-Z0-9]+ ---+ *[\r\n] *[\r\n]/,
+    catEyes:            /© ©/,
 
-    whitespace:         /[ \s]+/,
-    catEyes:            /[©]+/,
+    whitespace:         /[ \t]+/,
+    nl:                 /[\r\n]/,
     comments:           /\/\*([^\*]|\*[^\/])*(\*\/?)?|(\/\/|#)[^\r\n]*/,
     strings:            /"(\\.|[^"\r\n])*"?|'(\\.|[^'\r\n])*'?/,
-    ///jst:                /\<%=|\<%-|\<%|%\>/,
-    tagOpen:            /\<[a-z]+/,
-    tagClose:           /\<\/[a-z]+>/,
     cssunits:           /\d*\.?\d+(%|px|pt|em|rem)/,
     numbers:            /0x[\dA-Fa-f]+|-?(\d+\.?\d*|\.\d+)/,
-    keywords:           /\b(var|delete|function|new|return|const|module|if|else|elseif|while|do|for|in|instanceof|switch|case|break|try|catch|throw)\b/,
-    impValues:          /\b(undefined|null|true|false|this|arguments|window|document|Object|Number|String|Date|RegExp|Error)\b/,
+    jst:                /\<%=|\<%-|\<%|%\>/,
+    tagOpen:            /\<[a-z]+/,
+    tagClose:           /\<\/[a-z]+>/,
+    keywords:           /\b(var|let|delete|function|new|return|yield|const|module|if|else|elseif|while|do|for|in|instanceof|switch|case|break|try|catch|throw)\b/,
+    impValues:          /\b(undefined|null|true|false|this|arguments|window|document|console|Object|Number|String|Date|RegExp|Error)\b/,
     libs:               /[$]/,
     text:               /[_a-zA-Z]+/,
-    brackets:           /[<>(){}[\]]+/,
+    brackets:           /[(){}[\]]+/,
+    logic:              /===?|!==?|<=?|>=?|[|&]/,
+    assign:             /[-+*]?=/,
     operations:         /[-+*/%:]+/,
     syntax:             /[.,;!?]+/,
-    other:              /\S/
+    etc:                /\S/
 };
 
 --- less -----------------------------------------------------------------------
@@ -37,7 +40,7 @@ var rules = {
 .ldt > pre {
 
     @yellow:            desaturate( yellow, 50% );
-    @green:             lighten( green, 10% );
+    @green:             #5a0; 
     @cyan:              darken( cyan, 30% );
     @blue:              desaturate( lighten( blue, 20% ), 50% );
     @magenta:           desaturate( magenta, 70% );
@@ -46,20 +49,35 @@ var rules = {
     @brown:             desaturate( darken( #f82, 30% ), 50% );
     @gray:              darken( white, 60% );
 
+    @cateye:            darken( @green, 40% );
+
     > .mpcheader,
-    > .mpcstart {       color:  @cyan; }
-    > .tagOpen {        color:  @cyan; }
-    > .tagClose {       color:  @cyan; }
-    > .jst {            color:  @cyan; }
+    > .mpcstart,
+    > .tagOpen,
+    > .tagClose,
+    > .jst,
     > .brackets {       color:  @cyan; }
 
+    > .strings {        color:  @yellow; }
+    > .numbers,
+    > .cssunits {       color:  @magenta; }
+
+    > .libs,
+    > .impValues {      color:  @orange; }
+
+    > .keywords {       color:  @green; }
+    > .assign {         color:  @green; }
+
+    > .logic {          color:  @magenta; }
     > .operations {     color:  @gray; }
     > .syntax {         color:  @gray; }
-    > .catEyes {        color:  @green; }
-    > .strings {        color:  @yellow; }
-    > .numbers {        color:  @orange; }
-    > .cssunits {       color:  @orange; }
-    > .impValues {      color:  @orange; }
-    > .libs {           color:  @orange; }
-    > .keywords {       color:  @green; }
+
+
+    > .catEyes {        color:  #360; }
+    
+    /*  For debugging:
+
+    > .whitespace {     background: #000; }
+    > .etc {            background: @magenta; }
+    //*/
 }
