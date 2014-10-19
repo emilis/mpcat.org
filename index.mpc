@@ -63,8 +63,6 @@ title:                  MPCat.org
     3) empty line,
     4) part text.
 
-    If you make an error in MPC syntax, the background will turn to red.
-
     There are no checks for correctness of HTML/CSS/JS code at the moment.
 
     Click "Share" in the menu to get a url for your code.
