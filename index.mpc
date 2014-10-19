@@ -19,11 +19,14 @@ title:                  MPCat.org
 
     Welcome to MPCat.org.
 
-    You can edit this code. Click the [Run»] button and it will be executed in the viewer screen. More info is at the bottom.
+    » You can edit this code.
+    » Click [Run»] to view the result.
+    » More info – at the bottom.
 
     --- requirements -----------------
 
     //maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css
+
     //cdnjs.cloudflare.com/ajax/libs/zepto/1.1.4/zepto.js
 
     --- html -------------------------
