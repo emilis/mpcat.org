@@ -21,7 +21,9 @@ value:                  ""
 
 --- jst ------------------------------------------------------------------------
 
-<textarea class="<%- className %>"><%- value %></textarea>
+<div class="mpcat-editor-container">
+    <textarea class="<%- className %>"><%- value %></textarea>
+</div>
 
 --- js -------------------------------------------------------------------------
 
@@ -80,6 +82,34 @@ function onEditorInput( evt ){
 
 --- less -----------------------------------------------------------------------
 
+/// View before JS, container: -------------------------------------------------
+
+.mpcat-editor-container,
+textarea.mpcat-editor {
+
+    box-sizing:             border-box;
+    width:                  100%;
+    min-height:             100%;
+    padding:                0;
+    margin:                 0;
+    border:                 0 none transparent;
+
+    background-color:       #111;
+    color:                  #eee;
+    font-family:            @monospace;
+    font-size:              15px;
+}
+
+
+@media( min-width: @wWide ){
+
+    .mpcat-editor-container {
+        padding:            1em;
+    }
+}
+
+/// LDT styling ----------------------------------------------------------------
+
 .ldt {
 
     overflow:               hidden;
@@ -104,19 +134,3 @@ function onEditorInput( evt ){
         color:              fade( #ccc, 100 * @ldtAlpha );
     }
 }
-
-textarea.mpcat-editor {
-
-    box-sizing:         border-box;
-    width:              100%;
-    height:             100%;
-    padding:            1em;
-    margin:             0;
-    border:             0 none transparent;
-
-    background-color:   #222;
-    color:              #eee;
-    font-family:        @monospace;
-    font-size:          15px;
-}
-

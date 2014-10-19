@@ -8,7 +8,9 @@ updateContent
 
 --- jst ------------------------------------------------------------------------
 
-<div class="mpc-viewer"><em>Click [Run»] to update output...</em></div>
+<div class="mpc-viewer">
+    <p><em>Click [Run»] to update output...</em></p>
+</div>
 
 --- js -------------------------------------------------------------------------
 
@@ -116,7 +118,7 @@ function createScripts( frameDoc, scripts, jsCode ){
     box-sizing:         border-box;
     width:              100%;
     height:             100%;
-    padding:            3em 1em;
+    padding:            3em 1em 0;
 
     > iframe {
 
@@ -128,3 +130,10 @@ function createScripts( frameDoc, scripts, jsCode ){
     }
 }
 
+@media( min-width: @wWide ){
+
+    .mpc-viewer {
+
+        padding:        1em 0 0 1em;
+    }
+}
