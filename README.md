@@ -1,4 +1,4 @@
-# MPCat.org
+# MPCat.org [<img src="http://mpcat.org/static/mpcat.org.png" alt="MPCat.org" title="MPCat.org" height="46" align="right"></a>][mpcat]
 
 This is source code for the website at <http://mpcat.org/>.
 
@@ -20,7 +20,8 @@ Copyright 2014 Emilis Dambauskas <emilis.d@gmail.com>.
 
 This is free software, and you are welcome to redistribute it under certain conditions; see LICENSE.txt for details.
 
-
+[mpcat]:        http://mpcat.org/
+[logo]:         http://mpcat.org/static/mpcat.org.png
 [issues]:       https://github.com/emilis/mpcat.org/issues
 [stark]:        http://emilis.github.io/stark
 [mpc]:          https://github.com/emilis/mpc
