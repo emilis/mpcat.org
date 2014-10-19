@@ -1,6 +1,7 @@
 --- requirements ---------------------------------------------------------------
 
 dom:                    ../emilis/dom
+../zepto/event
 ldtParser:              ../ldt/parser
 ldtDecorator:           ../ldt/decorator
 compiler
@@ -51,7 +52,9 @@ function getValue(){
 
 function setValue( str ){
 
-    return getEl().value = str;
+    getEl().value = str;
+    $( getEl() ).trigger( "input" );
+    return str;
 }///
 
 function focus(){
