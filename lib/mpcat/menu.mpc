@@ -173,7 +173,7 @@ function toggleEditBtn( show ){
         
             display:            block;
             max-width:          80%;
-            padding-top:        0.25em;
+            padding-top:        0.5em;
             margin:             0 auto 1em;
         }
 
