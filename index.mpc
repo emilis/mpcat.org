@@ -21,23 +21,23 @@ title:                  MPCat.org
 
     You can edit this code. Click [Run»] and it will be executed in the viewer window. More info is at the bottom.
 
-    --- requirements --------------------------
+    --- requirements -----------------
 
     //maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css
     //cdnjs.cloudflare.com/ajax/libs/zepto/1.1.4/zepto.js
 
-    --- html ----------------------------------
+    --- html -------------------------
 
     <button class="btn btn-warning hello">Click me</button>
 
-    --- css -----------------------------------
+    --- css --------------------------
 
     button.hello {
         font-size:      200%;
         font-weight:    bold;
     }
 
-    --- js ------------------------------------
+    --- js ---------------------------
 
     $( ".hello" ).on( "click", onClickHello );
 
@@ -52,7 +52,7 @@ title:                  MPCat.org
             .append( "<p>Clicked at " + new Date + ".</p>" );
     }
 
-    --- more-info -----------------------------
+    --- more-info --------------------
 
     This is an example of a multi-part component. When run it should show an orange button with text "Click me", which turns green with text "Hello World!" after you click it.
 
