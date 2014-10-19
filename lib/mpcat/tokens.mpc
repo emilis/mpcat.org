@@ -18,7 +18,7 @@ var rules = {
     ///jst:                /\<%=|\<%-|\<%|%\>/,
     tagOpen:            /\<[a-z]+/,
     tagClose:           /\<\/[a-z]+>/,
-    percent:            /\d*\.?\d+%/,
+    cssunits:           /\d*\.?\d+(%|px|pt|em|rem)/,
     numbers:            /0x[\dA-Fa-f]+|-?(\d+\.?\d*|\.\d+)/,
     keywords:           /\b(var|delete|function|new|return|const|module|if|else|elseif|while|do|for|in|instanceof|switch|case|break|try|catch|throw)\b/,
     impValues:          /\b(undefined|null|true|false|this|arguments|window|document|Object|Number|String|Date|RegExp|Error)\b/,
@@ -58,6 +58,7 @@ var rules = {
     > .catEyes {        color:  @green; }
     > .strings {        color:  @yellow; }
     > .numbers {        color:  @orange; }
+    > .cssunits {       color:  @orange; }
     > .impValues {      color:  @orange; }
     > .libs {           color:  @orange; }
     > .keywords {       color:  @green; }
