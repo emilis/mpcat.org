@@ -82,6 +82,7 @@ function onEditorInput( evt ){
 
 .ldt {
 
+    overflow:               hidden;
     background-color:       #111;
 
     > pre,
