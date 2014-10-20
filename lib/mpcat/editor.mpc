@@ -85,6 +85,11 @@ function onEditorInput( evt ){
 
 --- less -----------------------------------------------------------------------
 
+@editorFont:                @monospace;
+@editorFontSize:            10pt;
+@editorBack:                #141414;
+@editorColor:               #f8f8f8;
+
 /// View before JS, container: -------------------------------------------------
 
 .mpcat-editor-container,
@@ -97,10 +102,10 @@ textarea.mpcat-editor {
     margin:                 0;
     border:                 0 none transparent;
 
-    background-color:       #111;
-    color:                  #eee;
-    font-family:            @monospace;
-    font-size:              15px;
+    background-color:       @editorBack;
+    color:                  @editorColor;
+    font-family:            @editorFont;
+    font-size:              @editorFontSize;
 }
 
 
@@ -116,12 +121,12 @@ textarea.mpcat-editor {
 .ldt {
 
     overflow:               hidden;
-    background-color:       #111;
+    background-color:       @editorBack;
 
     > pre,
     > label > textarea {
 
-        color:              #ccc;
+        color:              @editorColor;
 
         display:            block;
         width:              100%;
@@ -134,12 +139,12 @@ textarea.mpcat-editor {
         word-wrap:          break-word;
         word-break:         normal;
 
-        font-family:        @monospace;
-        font-size:          15px;
+        font-family:        @editorFont;
+        font-size:          @editorFontSize;
     }
 
     > label > textarea {
         
-        color:              fade( #ccc, 100 * @ldtAlpha );
+        color:              fade( @editorColor, 100 * @ldtAlpha );
     }
 }

@@ -22,8 +22,8 @@ var rules = {
     tagOpen:            /\<[a-z]+/,
     tagClose:           /\<\/[a-z]+>/,
     keywords:           /\b(var|let|delete|function|new|return|yield|const|module|if|else|elseif|while|do|for|in|instanceof|switch|case|break|try|catch|throw)\b/,
-    impValues:          /\b(undefined|null|true|false|this|arguments|window|document|console|Object|Number|String|Date|RegExp|Error)\b/,
-    libs:               /[$]/,
+    jsValues:           /\b(undefined|null|true|false|this|arguments|NaN|Infinity|Object|Function|Array|Number|String|Date|RegExp|Error)\b/,
+    domValues:          /[$]|\b(window|document|console|body)\b/,
     text:               /[_a-zA-Z]+/,
     brackets:           /[(){}[\]]+/,
     logic:              /===?|!==?|<=?|>=?|[|&]/,
@@ -39,6 +39,24 @@ var rules = {
 
 .ldt > pre {
 
+    .mkColor( @val ){
+        color:  darken( saturate( @val, 20% ), 10% );
+    }
+
+    @gray:              #494949; /// comments
+    @white:             #f8f8f8; /// text, brackets
+    @green:             #8f9d6a; /// strings
+    @red:               #cf6a4c; /// numbers, constants
+    @blue:              #7587a6; /// this
+    @magenta:           #9b859d; /// document
+
+    @brown9:            #9b703f; /// fnName, Date
+    @browna:            #ac885b; /// boilerprate tags
+    @yellowc:           #cda869; /// while $ + =
+    @yellowe:           #e0c589; /// tags
+    @yellowf:           #f9ee98; /// function var
+
+/*
     @yellow:            desaturate( yellow, 50% );
     @green:             #5a0; 
     @cyan:              darken( cyan, 30% );
@@ -48,34 +66,35 @@ var rules = {
     @orange:            #f62;
     @brown:             desaturate( darken( #f82, 30% ), 50% );
     @gray:              darken( white, 60% );
+*/
+    @cateyes:           #360;
 
-    @cateye:            darken( @green, 40% );
+    .mkColor( @white );
+
+    > .mpcstart {       .mkColor(   @yellowe );}
 
     > .mpcheader,
-    > .mpcstart,
     > .tagOpen,
     > .tagClose,
     > .jst,
-    > .brackets {       color:  @cyan; }
+    > .brackets {       .mkColor(   @brown9 );}
 
-    > .strings {        color:  @yellow; }
+    > .strings {        .mkColor(   @green );}
     > .numbers,
-    > .cssunits {       color:  @magenta; }
+    > .cssunits {       .mkColor(   @red );}
 
-    > .libs,
-    > .impValues {      color:  @orange; }
+    > .keywords {       .mkColor(   @yellowf );}
+    > .assign {         .mkColor(   @yellowf );}
+    > .jsValues {       .mkColor(   @blue );}
+    > .domValues {      .mkColor(   @magenta );}
 
-    > .keywords {       color:  @green; }
-    > .assign {         color:  @green; }
+    > .logic {          .mkColor(   @yellowc );}
+    > .operations {     .mkColor(   @yellowc );}
+    > .syntax {         .mkColor(   @brown9 );}
 
-    > .logic {          color:  @magenta; }
-    > .operations {     color:  @gray; }
-    > .syntax {         color:  @gray; }
+    > .comments {       .mkColor(   @gray );}
 
-    > .comments {       color:  @gray; }
-
-
-    > .catEyes {        color:  #360; }
+    > .catEyes {        color:      @cateyes; }
     
     /*  For debugging:
 

@@ -21,7 +21,7 @@ toggleEditBtn
 
     <menu class="primary">
         <button class="edit hide">«Ed</button>
-        <button class="run">R<span class="onwide">un</span>»</button>
+        <button class="run">R<span class="onwide">un</span>»<small class="onwide">F9</small></button>
         <button class="toggle">&equiv;</button>
     </menu>
     
@@ -77,6 +77,12 @@ function toggleEditBtn( show ){
 --- less -----------------------------------------------------------------------
 
 @zMenu:                 100;
+@menuBg:                #333633;
+@menuBorder:            #999c99;
+@menuBorderBright:      #bbbebb;
+@menuFgDark:            #999b99;
+@menuFg:                #c6c8c6;
+@menuFgBright:          #f8fff8;
 
 .mpcat-menu {
 
@@ -91,12 +97,12 @@ function toggleEditBtn( show ){
         > button {
 
             padding:            0.25em 0.5em;
-            border:             1px outset #666;
+            border:             1px outset @menuBorder;
             border-radius:      3px;
             cursor:             pointer;
 
-            background:         #333;
-            color:              #bbb;
+            background:         @menuBg;
+            color:              @menuFg;
 
             text-decoration:    none;
             font-family:        @sans;
@@ -104,15 +110,15 @@ function toggleEditBtn( show ){
             font-weight:        bold;
 
             &:hover {
-                background:     #333;
-                color:          #fff;
-                border-color:   #999;
+                color:          @menuFgBright;
+                border-color:   @menuBorderBright;
             }
 
             &.hide {
                 display:    none;
             }
 
+            > small,
             > .onwide {
                 display:    none;
             }
@@ -148,8 +154,8 @@ function toggleEditBtn( show ){
 
         position:       relative;
         height:         100%;
-        background:     #222;
-        color:          #fff;
+        background:     @menuBg;
+        color:          @menuFg;
 
         > menu {
             > a,
@@ -158,9 +164,21 @@ function toggleEditBtn( show ){
                 display:            block;
                 width:              96%;
                 box-sizing:         border-box;
+                padding:            0.3em 0.5em 0.2em;
                 margin:             0 2% 0.25em;
-                text-align:         center;
+                text-align:         left;
                 cursor:             pointer;
+                font-size:          12pt;
+                font-weight:        normal;
+                line-height:        18pt;
+
+                > small {
+
+                    display:        inline-block;
+                    float:          right;
+                    margin-top:     2pt;
+                    color:          @menuFgDark;
+                }
 
                 > .onwide {
                     display:        inline;
