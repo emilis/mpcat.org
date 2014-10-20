@@ -1,13 +1,13 @@
 --- requirements ---------------------------------------------------------------
 
-    layout:             lib/emilis/html5
-    ide:                lib/mpcat/ide
+layout:             lib/emilis/html5
+ide:                lib/mpcat/ide
     
-    lib/mpcat/common
+lib/mpcat/common
 
 --- yaml -----------------------------------------------------------------------
 
-title:                  MPCat.org
+title:              MPCat.org
 
 --- jst ------------------------------------------------------------------------
 
