@@ -164,13 +164,12 @@ function toggleEditBtn( show ){
                 display:            block;
                 width:              96%;
                 box-sizing:         border-box;
-                padding:            0.3em 0.5em 0.2em;
+                padding:            0.25em 0.5em 0.15em;
                 margin:             0 2% 0.25em;
                 text-align:         left;
                 cursor:             pointer;
                 font-size:          12pt;
                 font-weight:        normal;
-                line-height:        18pt;
 
                 > small {
 
