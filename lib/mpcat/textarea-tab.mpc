@@ -1,0 +1,32 @@
+--- requirements ---------------------------------------------------------------
+
+../zepto/event
+
+--- exports --------------------------------------------------------------------
+
+wrapElement
+insertTab
+
+--- js -------------------------------------------------------------------------
+
+function wrapElement( el ){
+
+    $( el ).on( "keydown", insertTab );
+}///
+
+function insertTab( evt ){
+
+    var keyCode =       evt.keyCode || evt.which;
+
+    if( keyCode === 9 ){
+
+        evt.preventDefault();
+        var start =     this.selectionStart;
+        var end =       this.selectionEnd;
+
+        // set textarea value to: text before caret + tab + text after caret
+        this.value =    this.value.slice( 0, start ) + "\t" + this.value.slice( end );
+        
+        this.selectionStart =   this.selectionEnd = start + 1;
+    }
+}///

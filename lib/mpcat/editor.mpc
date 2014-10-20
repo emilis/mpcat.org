@@ -5,6 +5,7 @@ dom:                    ../emilis/dom
 ldtParser:              ../ldt/parser
 ldtDecorator:           ../ldt/decorator
 compiler
+tabHandler:             textarea-tab
 tokens
 
 --- exports --------------------------------------------------------------------
@@ -41,6 +42,7 @@ function initElement( el ){
         el
     );
 
+    tabHandler.wrapElement( el );
     el.oninput =        onEditorInput;
     el.focus();
 }///
@@ -139,6 +141,7 @@ textarea.mpcat-editor {
         white-space:        pre-wrap;
         word-wrap:          break-word;
         word-break:         normal;
+        tab-size:           4;
 
         font-family:        @editorFont;
         font-size:          @editorFontSize;
