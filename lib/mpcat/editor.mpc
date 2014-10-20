@@ -120,6 +120,7 @@ textarea.mpcat-editor {
 
 .ldt {
 
+    padding-bottom:         1em;
     overflow:               hidden;
     background-color:       @editorBack;
 
