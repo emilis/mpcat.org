@@ -28,5 +28,7 @@ function insertTab( evt ){
         this.value =    this.value.slice( 0, start ) + "\t" + this.value.slice( end );
         
         this.selectionStart =   this.selectionEnd = start + 1;
+
+        $( this ).trigger( "input" );
     }
 }///
