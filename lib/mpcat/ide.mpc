@@ -1,6 +1,5 @@
 --- requirements ---------------------------------------------------------------
 
-dom:                    ../emilis/dom
 cards
 compiler
 editor
