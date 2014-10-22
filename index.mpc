@@ -11,7 +11,14 @@ title:              MPCat.org
 
 --- jst ------------------------------------------------------------------------
 
-<%= ide({ mpcExample: mpcExample.replace( /^    /gm, "" )}) %>
+<%= ide({ mpcExample: unindent( mpcExample )}) %>
+<%
+
+function unindent( str ){
+    
+    return str.replace( /^    /gm, "" );
+}///
+%>
 
 --- mpcExample -----------------------------------------------------------------
 
