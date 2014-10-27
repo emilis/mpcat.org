@@ -14,9 +14,8 @@ RRSYNC =		rsync -hlprt --del
 default:\
 	build/.htaccess\
 	build/index.html\
-	build/style.css\
-	build/script.js\
-	build/pages\
+	build/static/style.css\
+	build/static/script.js\
 
 
 .PHONY += sync-static
@@ -71,19 +70,13 @@ build/index.html:\
 	$(BUILD)
 
 
-build/style.css:\
+build/static/style.css:\
 	$(ALL_FILES)\
 
 	$(BUILD)
 
 
-build/script.js:\
+build/static/script.js:\
 	$(ALL_FILES)\
-
-	$(BUILD)
-
-
-build/pages:\
-	pages\
 
 	$(BUILD)
