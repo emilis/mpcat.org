@@ -52,7 +52,6 @@ deploy:\
 redeploy:\
 	clean\
 	default\
-	sync-static\
 	deploy\
 
 
