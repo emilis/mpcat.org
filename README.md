@@ -8,6 +8,8 @@ Sorry for lack of documentation at the moment.
 
 A good place to start is [index.mpc](https://github.com/emilis/mpcat.org/blob/master/index.mpc).
 
+Needs [Stark][stark] >=0.9 to compile.
+
 ##  Contributing
 
 *   Please use [Github Issues][issues] for bug reporting and feature requests.

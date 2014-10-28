@@ -1,0 +1,13 @@
+--- styl -----------------------------------------------------------------------
+
+wWide ?=                64em
+$wWide ?=               64em
+
+zMenu ?=                100
+$zMenu ?=               100
+
+$sans ?=                Fira Sans, Helvetica Neue, Helvetica, sans-serif
+$monospace ?=           monospace
+
+$WIDE =                 "( min-width $wWide )"
+

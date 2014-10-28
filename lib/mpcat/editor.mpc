@@ -1,5 +1,6 @@
 --- requirements ---------------------------------------------------------------
 
+../../config
 dom:                    ../emilis/dom
 ../zepto/event
 ldtParser:              ../ldt/parser
@@ -10,28 +11,25 @@ tokens
 
 --- exports --------------------------------------------------------------------
 
-selector:               yaml.selector
 setValue
 getValue
 focus
 
 --- yaml -----------------------------------------------------------------------
 
-className:              mpcat-editor
-selector:               .mpcat-editor
 value:                  ""
 
 --- jst ------------------------------------------------------------------------
 
-<div class="mpcat-editor-container">
-    <textarea class="<%- className %>"><%- value %></textarea>
+<div class="<%- CLASSNAME %>-container">
+    <textarea class="<%- CLASSNAME %>"><%- value %></textarea>
 </div>
 
 --- js -------------------------------------------------------------------------
 
-dom.eqa( yaml.selector ).forEach( initElement );
+dom.eqa( SELECTOR ).forEach( initElement );
 
-var getEl =             dom.eqs.bind( dom, yaml.selector + " > label > textarea" );
+var getEl =             dom.eqs.bind( dom, SELECTOR + " > label > textarea" );
 
 /// Functions ------------------------------------------------------------------
 
@@ -85,70 +83,65 @@ function onEditorInput( evt ){
 }///
 
 
---- less -----------------------------------------------------------------------
+--- styl -----------------------------------------------------------------------
 
-@editorFont:                @monospace;
-@editorFontSize:            10pt;
-@editorBack:                #141414;
-@editorColor:               #f8f8f8;
+$editorFont =               monospace
+$editorFontSize =           10pt
+$editorBack =               #141414
+$editorColor =              #f8f8f8
 
 /// View before JS, container: -------------------------------------------------
 
-.mpcat-editor-container,
-textarea.mpcat-editor {
+{SELECTOR}-container,
+textarea{SELECTOR}
 
-    box-sizing:             border-box;
-    width:                  100%;
-    min-height:             100%;
-    padding:                0;
-    margin:                 0;
-    border:                 0 none transparent;
+    box-sizing              border-box
+    width                   100%
+    min-height              100%
+    padding                 0
+    margin                  0
+    border                  0 none transparent
 
-    background-color:       @editorBack;
-    color:                  @editorColor;
-    font-family:            @editorFont;
-    font-size:              @editorFontSize;
-}
+    background-color        $editorBack
+    color                   $editorColor
+    font-family             $editorFont
+    font-size               $editorFontSize
 
+@media( min-width  $wWide )
 
-@media( min-width: @wWide ){
+    {SELECTOR}-container
 
-    .mpcat-editor-container {
-        padding:            1em;
-    }
-}
+        padding             1em
+
 
 /// LDT styling ----------------------------------------------------------------
 
-.ldt {
+{ldtDecorator-SELECTOR}
 
-    padding-bottom:         1em;
-    overflow:               hidden;
-    background-color:       @editorBack;
+    padding-bottom          1em
+    overflow                hidden
+    background-color        $editorBack
 
     > pre,
-    > label > textarea {
+    > label > textarea
 
-        color:              @editorColor;
+        color               $editorColor
 
-        display:            block;
-        width:              100%;
-        min-height:         100%;
-        padding:            0;
-        margin:             0;
-        border:             0 none transparent;
+        display             block
+        width               100%
+        min-height          100%
+        padding             0
+        margin              0
+        border              0 none transparent
 
-        white-space:        pre-wrap;
-        word-wrap:          break-word;
-        word-break:         normal;
-        tab-size:           4;
+        white-space         pre-wrap
+        word-wrap           break-word
+        word-break          normal
+        tab-size            4
 
-        font-family:        @editorFont;
-        font-size:          @editorFontSize;
-    }
+        font-family         $editorFont
+        font-size           $editorFontSize
 
-    > label > textarea {
+    > label > textarea
         
-        color:              fade( @editorColor, 100 * @ldtAlpha );
-    }
-}
+        color               alpha( $editorColor, $ldtAlpha )

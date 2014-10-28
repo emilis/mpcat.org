@@ -6,25 +6,25 @@
 --- jst ------------------------------------------------------------------------
 
 <%= header() %>
-<main>
+<main class="<%- CLASSNAME %>">
     <article>
         <%= content %>
     </article>
 </main>
 
---- less -----------------------------------------------------------------------
+--- styl -----------------------------------------------------------------------
 
-main {
+{SELECTOR} 
 
-    padding:            1em;
-    margin:             0;
-    background:         #fff;
-    color:              #000;
+    padding             1em
+    margin              0
+    background          #fff
+    color               #000
 
-    > article {
+    > article 
 
-        max-width:      36em;
-        margin:         0 auto;
-        padding:        1em 0;
-    }
-}
+        max-width       36em
+        margin          0 auto
+        padding         1em 0
+    
+

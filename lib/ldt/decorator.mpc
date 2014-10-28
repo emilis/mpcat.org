@@ -10,18 +10,12 @@ Forked from:
 
 --- exports --------------------------------------------------------------------
 
-selector:               yaml.selector
 createElement
 wrapElement
 
---- yaml -----------------------------------------------------------------------
-
-className:              ldt-decorated
-selector:               .ldt-decorated
-
 --- jst ------------------------------------------------------------------------
 
-<textarea class="<%- className %>"><%- value %></textarea>
+<textarea class="<%- CLASSNAME %>"><%- value %></textarea>
 
 --- js -------------------------------------------------------------------------
 
@@ -32,7 +26,7 @@ function createElement( parser, value ){
 
     var el =            createEl( "textarea" );
     el.value =          value;
-    el.className =      yaml.className;
+    el.className =      CLASSNAME;
 
     return wrapElement( parser, el );
 }///
@@ -44,7 +38,7 @@ function wrapElement( parser, textarea ){
     var output =        createEl( "pre" );
     var label =         createEl( "label" );
 
-    parent.className =  "ldt " + textarea.className;
+    parent.className =  CLASSNAME + " " + textarea.className; // + " ldt "; // + textarea.className;
     parent.appendChild( output );
     parent.appendChild( label );
 
@@ -131,69 +125,74 @@ function updateSpans( parser, output, code ){
 }///
 
 
---- less -----------------------------------------------------------------------
+--- styl -----------------------------------------------------------------------
 
-@monospace:                 monospace;
-@ldtAlpha:                  0.4;
+$ldtAlpha =         0.4
 
-.ldt,
-.ldt > pre,
-.ldt > label > textarea {
+{SELECTOR}
 
-    padding:                0;
-    margin:                 0;
+    $monospace =        monospace
+    $ldtAlpha =         0.4
 
-    font-family:            @monospace;
-	font-size:              16px;
-	color:                  black;
-}
+    fontSizing =
 
-.ldt > label > textarea {
+        padding         0
+        margin          0
 
-	/// fallback for browsers without rgba */
-	color:                  transparent;
-	/// make sure the alpha is low enough so it doesn't block the output layer */
-	color:                  rgba( 0, 0, 0, @ldtAlpha );
-}
+        font-family     $monospace
+        font-size       16px
+        color           black
+
+    {fontSizing}
+
+    > pre
+
+        {fontSizing}
+
+    > label > textarea
+
+        {fontSizing}
+
+        /// fallback for browsers without rgba */
+        color           transparent
+        /// make sure the alpha is low enough so it doesn't block the output layer */
+        color           rgba( 0, 0, 0, $ldtAlpha )
 
 /// settings you shouldn't play with unless you have a good reason -------------
 
-.ldt {
+{SELECTOR}
 
-	overflow: auto;
-	position: relative;
+	overflow:               auto
+	position:               relative
 
-    > pre {
+    > pre
 
-        -moz-padding-start: 1px;
-    }
+        -moz-padding-start  1px
 
-    > label {
+    > label
 
-        position:           absolute;
-        top:                0;
-        left:               0;
-        width:              100%;
-        height:             100%;
-        display:            inline;
-        box-sizing:         border-box;
-        -moz-box-sizing:    border-box;
-        -webkit-box-sizing: border-box;
-        cursor:             text;
+        position            absolute
+        top                 0
+        left                0
+        width               100%
+        height              100%
+        display             inline
+        box-sizing          border-box
+        -moz-box-sizing     border-box
+        -webkit-box-sizing  border-box
+        cursor              text
 
-        > textarea {
+        > textarea
 
-            margin:         0;
-            padding:        0;
-            border:         0;
-            background:     0;
-            outline:        none;
-            resize:         none;
-            min-width:      100%;
-            min-height:     100%;
-            overflow:       hidden;
+            margin          0
+            padding         0
+            border          0
+            background      0
+            outline         none
+            resize          none
+            min-width       100%
+            min-height      100%
+            overflow        hidden
             /// IE doesn't support rgba texarea, so use vendor specific alpha filter */
-            /// filter:         alpha( opacity = 10 );
-        }
-    }
-}
+            /// filter          alpha( opacity = 10 )
+

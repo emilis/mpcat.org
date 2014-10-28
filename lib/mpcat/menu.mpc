@@ -1,5 +1,6 @@
 --- requirements ---------------------------------------------------------------
 
+../../config
 ../zepto/zepto
 ../zepto/event
 
@@ -13,7 +14,7 @@ toggleEditBtn
 
 --- jst ------------------------------------------------------------------------
 
-<div class="mpcat-menu">
+<div class="<%- CLASSNAME %>">
 
     <a href="/" class="logo">
         <img src="/static/mpcat.org-vertical-white.png" title="MPCat.org" alt="MPCat.org">
@@ -37,7 +38,7 @@ $( init );
 
 function init(){
 
-    var $div =          $( ".mpcat-menu" );
+    var $div =          $( SELECTOR );
     var $secondary =    $div.children( ".secondary" );
     var $toggle =       $div.find( ".primary > .toggle" );
 
@@ -56,162 +57,137 @@ function init(){
 
 function onClickRun( fn ){
 
-    $( ".mpcat-menu > .primary > .run" ).on( "click", fn );
+    $( SELECTOR + " > .primary > .run" ).on( "click", fn );
 }///
 
 function onClickEdit( fn ){
 
-    $( ".mpcat-menu > .primary > .edit" ).on( "click", fn );
+    $( SELECTOR + " > .primary > .edit" ).on( "click", fn );
 }///
 
 function onClickShare( fn ){
 
-    $( ".mpcat-menu > .secondary > .share" ).on( "click", fn );
+    $( SELECTOR + " > .secondary > .share" ).on( "click", fn );
 }///
 
 function toggleEditBtn( show ){
 
-    $( ".mpcat-menu > .primary > .edit" ).toggleClass( "hide", !show );
+    $( SELECTOR + " > .primary > .edit" ).toggleClass( "hide", !show );
 }///
 
---- less -----------------------------------------------------------------------
+--- styl -----------------------------------------------------------------------
 
-@zMenu:                 100;
-@menuBg:                #333633;
-@menuBorder:            #999c99;
-@menuBorderBright:      #bbbebb;
-@menuFgDark:            #999b99;
-@menuFg:                #c6c8c6;
-@menuFgBright:          #f8fff8;
+$zMenu ?=                       100
 
-.mpcat-menu {
+{SELECTOR}
 
-    z-index:            @zMenu;
+    $menuBg =                   #333633
+    $menuBorder =               #999c99
+    $menuBorderBright =         #bbbebb
+    $menuFgDark =               #999b99
+    $menuFg =                   #c6c8c6
+    $menuFgBright =             #f8fff8
 
-    > menu {
+    z-index                     $zMenu
 
-        padding:        0;
-        margin:         0;
+    @media $WIDE
+
+        position                relative
+        height                  100%
+        background              $menuBg
+        color                   $menuFg
+
+    > menu 
+
+        padding                 0
+        margin                  0
 
         > a,
-        > button {
+        > button 
 
-            padding:            0.25em 0.5em;
-            border:             1px outset @menuBorder;
-            border-radius:      3px;
-            cursor:             pointer;
+            padding             0.25em 0.5em
+            border              1px outset $menuBorder
+            border-radius       3px
+            cursor              pointer
 
-            background:         @menuBg;
-            color:              @menuFg;
+            background          $menuBg
+            color               $menuFg
 
-            text-decoration:    none;
-            font-family:        @sans;
-            font-size:          14pt;
-            font-weight:        bold;
+            text-decoration     none
+            font-family         $sans
+            font-size           14pt
+            font-weight         bold
 
-            &:hover {
-                color:          @menuFgBright;
-                border-color:   @menuBorderBright;
-            }
+            @media $WIDE
 
-            &.hide {
-                display:    none;
-            }
+                display         block
+                width           96%
+                box-sizing      border-box
+                padding         0.25em 0.5em 0.15em
+                margin          0 2% 0.25em
+                text-align      left
+                cursor          pointer
+                font-size       12pt
+                font-weight     normal
 
-            > small,
-            > .onwide {
-                display:    none;
-            }
-        }
-    }
+            & hover 
+                color           $menuFgBright
+                border-color    $menuBorderBright
 
-    > .logo {
+            &.hide 
+                display         none
 
-        display:        none;
-    }
+            > small
+                display         none
 
-    > .primary {
+                @media $WIDE
 
-        text-align:     right;
-    }
+                    display     inline-block
+                    float       right
+                    margin-top  2pt
+                    color       $menuFgDark
 
-    > .secondary {
+            > .onwide 
+                display         none
+
+                @media( min-width $wWide )
+                    display     inline
+
+    > .logo 
+    > .logo > img
+
+        display                 none
+
+        @media $WIDE
+
+            display             block
+            max-width           80%
+            padding-top         0.5em
+            margin              0 auto 1em
+
+
+    > .primary 
+
+        text-align              right
+
+        > .edit
+        > .toggle
+
+            @media $WIDE
+
+                display         none
+
+    > .secondary 
         
-        display:        none;
+        display                 none
 
-        &.opened {
-            
-            display:    block;
-        }
-    }
-}
+        &.opened 
+            display             block
 
-/// Responsive -----------------------------------------------------------------
+        @media $WIDE
 
-@media( min-width: @wWide ){
-
-    .mpcat-menu{
-
-        position:       relative;
-        height:         100%;
-        background:     @menuBg;
-        color:          @menuFg;
-
-        > menu {
-            > a,
-            > button {
-
-                display:            block;
-                width:              96%;
-                box-sizing:         border-box;
-                padding:            0.25em 0.5em 0.15em;
-                margin:             0 2% 0.25em;
-                text-align:         left;
-                cursor:             pointer;
-                font-size:          12pt;
-                font-weight:        normal;
-
-                > small {
-
-                    display:        inline-block;
-                    float:          right;
-                    margin-top:     2pt;
-                    color:          @menuFgDark;
-                }
-
-                > .onwide {
-                    display:        inline;
-                }
-            }
-        }
-
-        > .logo,
-        > .logo > img {
-        
-            display:            block;
-            max-width:          80%;
-            padding-top:        0.5em;
-            margin:             0 auto 1em;
-        }
-
-        > .primary {
-        
-            > .edit,
-            > .toggle {
-            
-                display:    none;
-            }
-        }
-
-        > .secondary {
-
-            display:    block;
+            display             block
 
             > a,
-            > button {
-                
-                display:        block;
-            }
-        }
-    }
-}
+            > button 
+                display         block

@@ -1,5 +1,6 @@
 --- requirements ---------------------------------------------------------------
 
+../../config
 cards
 compiler
 editor
@@ -10,7 +11,7 @@ viewer
 
 --- jst ------------------------------------------------------------------------
 
-<div class="mpcat-ide">
+<div class="<%- CLASSNAME %>">
     <div class="menu">
         <%= menu() %>
     </div>
@@ -87,62 +88,46 @@ function onLoad( err, result ){
     }
 }///
 
---- less -----------------------------------------------------------------------
+--- styl -----------------------------------------------------------------------
 
-@wWide:                 64em;
-@zMenu:                 100;
+body 
 
-body {
+    position            absolute
+    width               100%
+    height              100%
+    padding             0
+    margin              0
 
-    position:           absolute;
-    width:              100%;
-    height:             100%;
-    padding:            0;
-    margin:             0;
-}
+{SELECTOR}
 
-.mpcat-ide {
+    position            absolute
+    width               100%
+    height              100%
+    padding             0
+    margin              0
 
-    position:           absolute;
-    width:              100%;
-    height:             100%;
-    padding:            0;
-    margin:             0;
+    > .menu 
 
-    > .menu {
+        position        fixed
+        right           0
+        z-index         $zMenu
 
-        position:       fixed;
-        right:          0;
-        z-index:        @zMenu;
-    }
+        @media $WIDE
 
-    > .cards {
+            width       6em
+            height      100%
+            left        0
+            right       none
 
-        position:       absolute;
-        width:          100%;
-        height:         100%;
-        margin:         0;
-        padding:        0;
-        box-sizing:     border-box;
-    }
-}
+    > .cards 
 
-/// Responsive -----------------------------------------------------------------
+        position        absolute
+        width           100%
+        height          100%
+        margin          0
+        padding         0
+        box-sizing      border-box
 
-@media ( min-width: @wWide ){
+        @media $WIDE
 
-    .mpcat-ide {
-
-        > .menu {
-            width:      6em;
-            height:     100%;
-            left:       0;
-            right:      none;
-        }
-
-        > .cards {
-            
-            padding:    0 0 0 6em;
-        }
-    }
-}
+            padding     0 0 0 6em

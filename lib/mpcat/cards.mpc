@@ -1,6 +1,7 @@
 --- requirements ---------------------------------------------------------------
 
 ../zepto/zepto
+../../config
 
 --- exports --------------------------------------------------------------------
 
@@ -9,7 +10,7 @@ showViewer
 
 --- jst ------------------------------------------------------------------------
 
-<div class="mpcat-cards">
+<div class="<%- CLASSNAME %>">
     <div class="editor active"><%= editor %></div>
     <div class="viewer"><%= viewer %></div>
 </div>
@@ -21,7 +22,7 @@ var showViewer =        showCard.bind( this, ".viewer" );
 
 function showCard( selector ){
 
-    $( ".mpcat-cards" )
+    $( SELECTOR )
         .children( "div" )
         .removeClass( "active" )
         .filter( selector )
@@ -29,39 +30,27 @@ function showCard( selector ){
 
 }///
 
---- less -----------------------------------------------------------------------
+--- styl -----------------------------------------------------------------------
 
-.mpcat-cards {
+{SELECTOR}
 
-    position:           relative;
-    width:              100%;
-    height:             100%;
+    position            relative
+    width               100%
+    height              100%
 
-    > div {
+    > div  
 
-        display:        none;
-        width:          100%;
-        height:         100%;
-        overflow-y:     auto;
+        display         none 
+        width           100% 
+        height          100% 
+        overflow-y      auto 
 
-        &.active {
+        @media( min-width: wWide )
 
-            display:    block;
-        }
-    }
-}
+            display     block
+            width       50%
+            float       left
 
-/// Responsive -----------------------------------------------------------------
+        &.active  
 
-@media( min-width: @wWide ){
-
-    .mpcat-cards {
-
-        > div {
-
-            display:    block;
-            width:      50%;
-            float:      left;
-        }
-    }
-}
+            display     block

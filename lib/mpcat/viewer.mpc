@@ -8,13 +8,13 @@ updateContent
 
 --- jst ------------------------------------------------------------------------
 
-<div class="mpc-viewer">
+<div class="<%- CLASSNAME %>">
     <p><em>Click [Run»] to update output...</em></p>
 </div>
 
 --- js -------------------------------------------------------------------------
 
-var viewer =            dom.eqs( ".mpc-viewer" );
+var viewer =            dom.eqs( SELECTOR );
 
 function updateContent( content ){
 
@@ -111,31 +111,25 @@ function createScripts( frameDoc, scripts, jsCode ){
 }///
 
 
---- less ------------------------------------------------------------------------
+--- styl ------------------------------------------------------------------------
 
-.mpc-viewer {
+{SELECTOR}
     
-    box-sizing:         border-box;
-    width:              100%;
-    height:             100%;
-    padding:            1em 0 0;
-    border-top:         3em solid #222;
+    box-sizing          border-box
+    width               100%
+    height              100%
+    padding             1em 0 0
+    border-top          3em solid #222
 
-    > iframe {
+    @media $WIDE
 
-        /// position:       absolute;
-        display:        block;
-        width:          100%;
-        height:         100%;
-        border:         0 none transparent;
-    }
-}
+        padding:        1em 0 0 1em
+        border-top      0 none transparent
 
-@media( min-width: @wWide ){
+    > iframe 
 
-    .mpc-viewer {
-
-        border-top:     0 none transparent;
-        padding:        1em 0 0 1em;
-    }
-}
+        /// position        absolute
+        display         block
+        width           100%
+        height          100%
+        border          0 none transparent
