@@ -12,10 +12,10 @@ RRSYNC =		rsync -hlprt --del
 
 .PHONY = default
 default:\
-	build/.htaccess\
 	build/index.html\
 	build/static/style.css\
 	build/static/script.js\
+	build/.htaccess\
 
 
 .PHONY += sync-static
