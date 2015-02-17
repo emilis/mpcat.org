@@ -1,13 +1,13 @@
 --- requirements ---------------------------------------------------------------
 
-../../config
-dom:                    ../emilis/dom
-../zepto/event
-ldtParser:              ../ldt/parser
-ldtDecorator:           ../ldt/decorator
-compiler
-tabHandler:             textarea-tab
-tokens
+config
+dom:                    emilis/dom
+zepto/event
+ldtParser:              ldt/parser
+ldtDecorator:           ldt/decorator
+compiler:               ./compiler
+tabHandler:             ./textarea-tab
+tokens:                 ./tokens
 
 --- exports --------------------------------------------------------------------
 

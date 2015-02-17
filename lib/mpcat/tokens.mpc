@@ -1,6 +1,6 @@
 --- requirements ---------------------------------------------------------------
 
-ldtDecorator:           ../ldt/decorator
+ldtDecorator:           ldt/decorator
 
 --- exports --------------------------------------------------------------------
 
@@ -45,27 +45,27 @@ var rules = {
 
     $mkColor( $val )
 
-        color   darken( saturate( $val, 20% ), 10% )
+        color       darken( saturate( $val, 20% ), 10% )
     
-    $gray =        #494949 /// comments
-    $white =       #f8f8f8 /// text, brackets
-    $green =       #8f9d6a /// strings
-    $red =         #cf6a4c /// numbers, constants
-    $blue =        #7587a6 /// this
-    $magenta =     #9b859d /// document
+    $gray =         #494949 /// comments
+    $white =        #f8f8f8 /// text, brackets
+    $green =        #8f9d6a /// strings
+    $red =          #cf6a4c /// numbers, constants
+    $blue =         #7587a6 /// this
+    $magenta =      #9b859d /// document
 
-    $brown9 =      #9b703f /// fnName, Date
-    $browna =      #ac885b /// boilerprate tags
-    $yellowc =     #cda869 /// while $ + =
-    $yellowe =     #e0c589 /// tags
-    $yellowf =     #f9ee98 /// function var
+    $brown9 =       #9b703f /// fnName, Date
+    $browna =       #ac885b /// boilerprate tags
+    $yellowc =      #cda869 /// while $ + =
+    $yellowe =      #e0c589 /// tags
+    $yellowf =      #f9ee98 /// function var
 
-    $cateyes =     #360
+    $cateyes =      #360
 
-    $mkColor $white
+    $mkColor        $white
 
     > .mpcstart
-                   $mkColor    $yellowe
+                    $mkColor    $yellowe
 
     > .mpcheader
     > .tagOpen
@@ -73,34 +73,34 @@ var rules = {
     > .jst
     > .brackets
     > .syntax
-                   $mkColor    $brown9
+                    $mkColor    $brown9
 
     > .strings
-                   $mkColor    $green
+                    $mkColor    $green
 
     > .numbers
     > .cssunits
-                   $mkColor    $red
+                    $mkColor    $red
 
     > .keywords
     > .assign
-                   $mkColor    $yellowf
+                    $mkColor    $yellowf
 
     > .jsValues
-                   $mkColor    $blue
+                    $mkColor    $blue
 
     > .domValues
-                   $mkColor    $magenta
+                    $mkColor    $magenta
 
     > .logic 
     > .operations
-                   $mkColor    $yellowc
+                    $mkColor    $yellowc
 
     > .comments
-                   $mkColor    $gray
+                    $mkColor    $gray
 
     > .catEyes
-                   color       $cateyes
+                    color       $cateyes
     
     /*  For debugging:
     > .whitespace

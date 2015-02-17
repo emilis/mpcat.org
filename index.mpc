@@ -1,9 +1,9 @@
 --- requirements ---------------------------------------------------------------
 
-layout:             lib/emilis/html5
-ide:                lib/mpcat/ide
+layout:             emilis/html5
+ide:                mpcat/ide
     
-lib/mpcat/common
+mpcat/common
 
 --- yaml -----------------------------------------------------------------------
 

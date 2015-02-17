@@ -1,13 +1,13 @@
 --- requirements ---------------------------------------------------------------
 
-../../config
-cards
-compiler
-editor
-menu
-tmpStorage:             tmp-storage
-viewer
-../mousetrap/mousetrap-global-bind
+config
+cards:                  ./cards
+compiler:               ./compiler
+editor:                 ./editor
+menu:                   ./menu
+tmpStorage:             ./tmp-storage
+viewer:                 ./viewer
+mousetrap/mousetrap-global-bind
 
 --- jst ------------------------------------------------------------------------
 
