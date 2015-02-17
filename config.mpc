@@ -1,3 +1,11 @@
+--- compiler ------------------------------------------------------------------
+
+js:
+    nowrap:
+        - /bower_components/zepto/zepto
+        - /bower_components/mousetrap/mousetrap
+        - /bower_components/mousetrap/plugins/global-bind/mousetrap-global-bind
+
 --- styl -----------------------------------------------------------------------
 
 wWide ?=                64em

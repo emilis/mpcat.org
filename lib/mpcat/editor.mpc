@@ -1,8 +1,8 @@
 --- requirements ---------------------------------------------------------------
 
 config
+zepto/zepto
 dom:                    emilis/dom
-zepto/event
 ldtParser:              ldt/parser
 ldtDecorator:           ldt/decorator
 compiler:               ./compiler

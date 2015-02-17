@@ -7,7 +7,9 @@ editor:                 ./editor
 menu:                   ./menu
 tmpStorage:             ./tmp-storage
 viewer:                 ./viewer
-mousetrap/mousetrap-global-bind
+
+mousetrap/mousetrap
+mousetrap/plugins/global-bind/mousetrap-global-bind
 
 --- jst ------------------------------------------------------------------------
 
