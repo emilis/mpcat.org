@@ -9,12 +9,11 @@ write
 
 --- yaml -----------------------------------------------------------------------
 
-baseUrl:                pushdb.mpcat.org
+BASE_URL:               //pushdb.mpcat.org
 
 --- js -------------------------------------------------------------------------
 
-var pdb =               PushDb( "//" + yaml.baseUrl );
-
+var pdb =               PushDb( BASE_URL );
 
 function read( id, cb ){
 
